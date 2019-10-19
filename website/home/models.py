@@ -1,7 +1,8 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel
+from modelcluster.fields import ParentalKey
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Orderable
 
 
 class HomePage(Page):
@@ -18,9 +19,39 @@ class HomePage(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('banner_title'),
-        FieldPanel('banner_subtitle'),
+        MultiFieldPanel(
+            [
+                FieldPanel('banner_title'),
+                FieldPanel('banner_subtitle'),
+            ],
+            heading='Achievements'
+        ),
+        MultiFieldPanel(
+            [
+                InlinePanel('achievements', min_num=3, max_num=5),
+            ],
+            heading='Achievements'
+        )
     ]
 
     class Meta:
         verbose_name = 'Home Page'
+
+
+class Statistics(Orderable):
+    page = ParentalKey(
+        'home.HomePage',
+        related_name='achievements',
+    )
+    name = models.CharField(
+        max_length=128,
+        blank=False,
+    )
+    number = models.IntegerField(
+        blank=False,
+    )
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('number'),
+    ]
