@@ -26,3 +26,20 @@ class SocialMedia(BaseSetting):
 
     class Meta:
         verbose_name = 'Social Media'
+
+
+@register_setting
+class Blog(BaseSetting):
+
+    num_posts_per_page = models.PositiveIntegerField(
+        verbose_name='Posts per page',
+        help_text='The number of blog posts that appear in one page. ',
+        default=5,
+    )
+
+    panels = [
+        FieldPanel('num_posts_per_page')
+    ]
+
+    class Meta:
+        verbose_name = 'Blog'

@@ -13,5 +13,9 @@
             <p></p>
         {% endfor %}
 
+        {% with pages=posts %}
+            {% include 'navigation/pagination.html' %}
+        {% endwith %}
+
     </div>
 {% endblock %}

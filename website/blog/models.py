@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel
 from wagtail.core.fields import StreamField
@@ -6,6 +7,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 
+from settings.models import Blog as BlogSettings
 from streams import blocks
 
 
@@ -44,7 +46,18 @@ class BlogListingPage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context['posts'] = BlogDetailPage.objects.live().public()
+        all_posts = BlogDetailPage.objects.live().public().order_by('-first_published_at')
+        posts_per_page = BlogSettings.for_site(request.site).num_posts_per_page
+        paginator = Paginator(all_posts, posts_per_page)
+        page_nr = request.GET.get('page')
+        try:
+            posts = paginator.page(page_nr)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        context['posts'] = posts
         return context
 
 
