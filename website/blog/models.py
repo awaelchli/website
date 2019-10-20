@@ -19,6 +19,8 @@ class BlogListingPage(Page):
 
 
 class BlogDetailPage(Page):
+    template = 'blog/post.html'
+
     subtitle = models.CharField(
         max_length=128,
         blank=True,
