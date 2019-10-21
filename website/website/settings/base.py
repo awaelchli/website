@@ -56,7 +56,8 @@ INSTALLED_APPS = [
 
     'wagtailfontawesome',
     'captcha',
-    'wagtailcaptcha'
+    'wagtailcaptcha',
+    'wagtailcodeblock',
 ]
 
 MIDDLEWARE = [
@@ -154,3 +155,27 @@ BASE_URL = 'http://example.com'
 RECAPTCHA_PUBLIC_KEY = SECRETS['RECAPTCHA']['PUBLIC_KEY']
 RECAPTCHA_PRIVATE_KEY = SECRETS['RECAPTCHA']['PRIVATE_KEY']
 NOCAPTCHA = True
+
+# Wagtail code block plugin
+WAGTAIL_CODE_BLOCK_THEME = 'default'
+
+WAGTAIL_CODE_BLOCK_LANGUAGES = (
+    ('bash', 'Bash + Shell'),
+    ('batch', 'Batch'),
+    ('c', 'C'),
+    ('cpp', 'C++'),
+    ('css', 'CSS'),
+    ('django', 'Django/Jinja2'),
+    ('git', 'Git'),
+    ('java', 'Java'),
+    ('javascript', 'JavaScript'),
+    ('json', 'JSON'),
+    ('latex', 'LaTeX'),
+    ('makefile', 'Makefile'),
+    ('markdown', 'Markdown'),
+    ('matlab', 'MATLAB'),
+    ('python', 'Python'),
+    ('regex', 'Regex'),
+    ('sql', 'SQL'),
+    ('yaml', 'YAML'),
+)

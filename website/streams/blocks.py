@@ -1,5 +1,7 @@
 from wagtail.core import blocks
+from wagtail.core.blocks import StreamBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtailcodeblock.blocks import CodeBlock
 
 
 class TitleAndTextBlock(blocks.StructBlock):
@@ -63,3 +65,7 @@ class CardBlock(blocks.StructBlock):
         template = 'streams/card_block.html'
         icon = 'edit'
         label = 'Cards'
+
+
+class ContentStreamBlock(StreamBlock):
+    code = CodeBlock(label='Code')
