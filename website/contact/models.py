@@ -3,9 +3,10 @@ from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, InlinePanel, FieldRowPanel
 from wagtail.contrib.forms.models import AbstractFormField, AbstractEmailForm
 from wagtail.core.fields import RichTextField
+from wagtailcaptcha.models import WagtailCaptchaEmailForm
 
 
-class ContactPage(AbstractEmailForm):
+class ContactPage(WagtailCaptchaEmailForm):
     template = 'contact/main.html'
 
     intro_text = RichTextField(blank=True)
