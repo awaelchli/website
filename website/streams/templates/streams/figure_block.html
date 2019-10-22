@@ -1,0 +1,10 @@
+{% load wagtailimages_tags %}
+
+{% image self.image min-256x1024 as img %}
+
+<figure class="figure">
+    <img src="{{ img.url }}" class="img-rounded" alt="{{ img.alt }}" style="width: 100%;">
+    <figcaption class="figure-caption">
+        {{ self.caption }}
+    </figcaption>
+</figure>

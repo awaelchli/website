@@ -1,7 +1,7 @@
 from wagtail.core import blocks
 from wagtail.core.blocks import StreamBlock
 from wagtail.images.blocks import ImageChooserBlock
-from wagtailcodeblock.blocks import CodeBlock
+import wagtailcodeblock.blocks
 
 
 class TitleAndTextBlock(blocks.StructBlock):
@@ -62,10 +62,72 @@ class CardBlock(blocks.StructBlock):
     )
 
     class Meta:
-        template = 'streams/card_block.html'
+        template = 'card_block.html'
         icon = 'edit'
         label = 'Cards'
 
 
-class ContentStreamBlock(StreamBlock):
-    code = CodeBlock(label='Code')
+class CodeFragmentBlock(StreamBlock):
+
+    code = wagtailcodeblock.blocks.CodeBlock(
+        label='Code'
+    )
+
+    caption = blocks.TextBlock(
+        required=False
+    )
+
+    class Meta:
+        icon = 'code'
+        label = 'Code Fragment'
+
+
+class FigureBlock(blocks.StructBlock):
+
+    image = ImageChooserBlock(
+        required=True
+    )
+    caption = blocks.TextBlock(
+        required=False,
+    )
+
+    class Meta:
+        template = 'streams/figure_block.html'
+        icon = 'image'
+        label = 'Image'
+
+
+class MathBlock(blocks.StructBlock):
+
+    equation = blocks.TextBlock(
+        required=True
+    )
+
+    size = blocks.ChoiceBlock(
+        choices=[
+            (100, '100%'),
+            (150, '150%'),
+            (200, '200%'),
+            (250, '250%'),
+        ],
+        default=150,
+        required=True
+    )
+
+    caption = blocks.TextBlock(
+        required=False
+    )
+
+    class Meta:
+        template = 'streams/math_block.html'
+        icon = 'code'
+        label = 'LaTeX'
+
+    def clean(self, value):
+        eq = value['equation']
+        eq = eq.strip().strip('$')
+        eq = eq.replace('\\[', '').replace('\\]', '')
+        eq = eq.replace('\\(', '').replace('\\)', '')
+        eq = eq.strip()
+        value['equation'] = eq
+        return value

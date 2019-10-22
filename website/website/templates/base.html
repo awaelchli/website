@@ -1,4 +1,5 @@
 {% load static wagtailuserbar %}
+{% load mathjax %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -39,6 +40,7 @@
         <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/fontawesome/all.min.js' %}"></script>
+        {% mathjax_scripts %}
         <script type="text/javascript" src="{% static 'js/website.js' %}"></script>
 
         {% block extra_js %}

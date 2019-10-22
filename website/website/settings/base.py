@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'captcha',
     'wagtailcaptcha',
     'wagtailcodeblock',
+    'pydjax',
 ]
 
 MIDDLEWARE = [
@@ -179,3 +180,7 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ('sql', 'SQL'),
     ('yaml', 'YAML'),
 )
+
+
+# Mathjax plugin
+MATHJAX_ENABLED = True
