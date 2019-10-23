@@ -1,0 +1,21 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "description": "Personal Website",
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "website/website/settings/prod"
+  },
+  "formation": {
+  },
+  "name": "website",
+  "scripts": {
+    "postdeploy": "bin/setup"
+  },
+  "stack": "heroku-18"
+}
