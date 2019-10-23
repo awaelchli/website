@@ -9,13 +9,19 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
-# Secret information like passwords are stored in a json file on the production server.
-with open(os.path.join(BASE_DIR, 'secrets.json'), 'r') as file:
-    SECRETS = json.load(file)
+# Secret information like passwords are stored in a json file or in environment variables.
+if os.path.exists(os.path.join(BASE_DIR, 'secrets.json')):
+    with open(os.path.join(BASE_DIR, 'secrets.json'), 'r') as file:
+        SECRETS = json.load(file)
+else:
+    SECRETS = os.environ.copy()
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRETS['SECRET_KEY']
+
+
+DATABASES = {}
 
 
 INSTALLED_APPS = [
@@ -153,8 +159,8 @@ BASE_URL = 'http://example.com'
 
 
 # Google reCAPTCHA settings
-RECAPTCHA_PUBLIC_KEY = SECRETS['RECAPTCHA']['PUBLIC_KEY']
-RECAPTCHA_PRIVATE_KEY = SECRETS['RECAPTCHA']['PRIVATE_KEY']
+RECAPTCHA_PUBLIC_KEY = SECRETS['RECAPTCHA_PUBLIC_KEY']
+RECAPTCHA_PRIVATE_KEY = SECRETS['RECAPTCHA_PRIVATE_KEY']
 NOCAPTCHA = True
 
 # Wagtail code block plugin
