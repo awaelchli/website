@@ -1,7 +1,7 @@
 import os
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DJANGO_SERVER_TYPE = os.environ.get('DJANGO_SERVER_TYPE', 'prduction')
+DJANGO_SERVER_TYPE = os.environ.get('DJANGO_SERVER_TYPE', 'production')
 
 if DJANGO_SERVER_TYPE == 'production':
     from .prod import *
