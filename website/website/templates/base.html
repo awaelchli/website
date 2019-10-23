@@ -19,9 +19,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/website.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome/all.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'website/css/website.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'fontawesome/css/all.min.css' %}">
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -36,12 +36,12 @@
         {% block content %}{% endblock %}
 
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/fontawesome/all.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'website/js/jquery-3.4.1.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'website/js/popper.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'fontawesome/js/all.min.js' %}"></script>
         {% mathjax_scripts %}
-        <script type="text/javascript" src="{% static 'js/website.js' %}"></script>
+        <script type="text/javascript" src="{% static 'website/js/website.js' %}"></script>
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
