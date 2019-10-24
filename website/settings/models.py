@@ -5,6 +5,33 @@ from wagtail.contrib.settings.registry import register_setting
 
 
 @register_setting
+class GoogleAnalytics(BaseSetting):
+
+    name = models.CharField(
+        max_length=128,
+        blank=True,
+    )
+    tracking_id = models.CharField(
+        max_length=14,  # UA-XXXXXXXXX-X
+        blank=True,
+        verbose_name='Tracking ID',
+    )
+
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('name'),
+                FieldPanel('tracking_id'),
+            ],
+            heading='Details'
+        )
+    ]
+
+    class Meta:
+        verbose_name = 'Google Analytics'
+
+
+@register_setting
 class SocialMedia(BaseSetting):
 
     facebook = models.URLField(blank=True)

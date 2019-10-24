@@ -45,6 +45,11 @@
         {% mathjax_scripts %}
         <script type="text/javascript" src="{% static 'website/js/website.js' %}"></script>
 
+        {# Google Analytics #}
+        {% with settings.settings.GoogleAnalytics.tracking_id as tracking_id %}
+            {% include 'analytics.html' %}
+        {% endwith %}
+
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
