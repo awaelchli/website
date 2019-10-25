@@ -24,6 +24,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = [
     'aedug.com',
+    'www.aedug.com',
     'quantumrealm.herokuapp.com'
 ]
 
