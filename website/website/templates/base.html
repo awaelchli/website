@@ -28,6 +28,11 @@
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
+
+        {# Google Analytics #}
+        {% with settings.settings.GoogleAnalytics.tracking_id as tracking_id %}
+            {% include 'analytics.html' %}
+        {% endwith %}
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
@@ -44,11 +49,6 @@
         <script type="text/javascript" src="{% static 'fontawesome/js/all.min.js' %}"></script>
         {% mathjax_scripts %}
         <script type="text/javascript" src="{% static 'website/js/website.js' %}"></script>
-
-        {# Google Analytics #}
-        {% with settings.settings.GoogleAnalytics.tracking_id as tracking_id %}
-            {% include 'analytics.html' %}
-        {% endwith %}
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
