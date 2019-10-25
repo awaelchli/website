@@ -29,6 +29,10 @@ ALLOWED_HOSTS = [
 ]
 
 
+# Redirect http to https
+SECURE_SSL_REDIRECT = True
+
+
 # Sentry
 sentry_sdk.init(
     dsn=SECRETS['SENTRY_URL'],
