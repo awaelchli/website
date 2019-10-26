@@ -4,28 +4,25 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 
 from wagtail.core.models import Page, Orderable
 
+from blog.models import BlogListingPage
+from contact.models import ContactPage
+from core.models import BannerPage
+from flex.models import FlexPage
 
-class HomePage(Page):
+
+class HomePage(BannerPage):
     template = 'home/home_page.html'
+    subpage_types = [
+        'blog.BlogListingPage',
+        'contact.ContactPage',
+        'flex.FlexPage',
+    ]
+    parent_page_type = [
+        'wagtailcore.Page',
+    ]
     max_count = 1
 
-    banner_title = models.CharField(
-        max_length=128,
-        blank=False,
-    )
-    banner_subtitle = models.CharField(
-        max_length=128,
-        blank=True,
-    )
-
-    content_panels = Page.content_panels + [
-        MultiFieldPanel(
-            [
-                FieldPanel('banner_title'),
-                FieldPanel('banner_subtitle'),
-            ],
-            heading='Achievements'
-        ),
+    content_panels = BannerPage.content_panels + [
         MultiFieldPanel(
             [
                 InlinePanel('achievements', min_num=3, max_num=5),

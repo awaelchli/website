@@ -1,0 +1,50 @@
+<hr>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <ul class="list-inline text-center">
+                    {% if settings.settings.SocialMedia.twitter %}
+                    <li class="list-inline-item">
+                        <a href="{{ settings.settings.SocialMedia.twitter }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fab fa-twitter fa-stack-1x"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if settings.settings.SocialMedia.facebook %}
+                    <li class="list-inline-item">
+                        <a href="{{ settings.settings.SocialMedia.facebook }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fab fa-facebook-f fa-stack-1x"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if settings.settings.SocialMedia.youtube %}
+                    <li class="list-inline-item">
+                        <a href="{{ settings.settings.SocialMedia.youtube }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fab fa-youtube fa-stack-1x"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if settings.settings.SocialMedia.github %}
+                    <li class="list-inline-item">
+                        <a href="{{ settings.settings.SocialMedia.github }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fab fa-github fa-stack-1x"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Adrian Wälchli {% now "Y" %}
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -9,6 +9,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 
+from core.models import BannerPage
 from settings.models import Blog as BlogSettings
 from streams import blocks
 
@@ -41,10 +42,14 @@ class BlogAuthor(models.Model):
         return f'{self.first_name} {self.last_name}'
 
 
-class BlogListingPage(Page):
+class BlogListingPage(BannerPage):
     """ Lists all blog pages. """
 
     template = 'blog/listing_page.html'
+    max_count = 1
+    subpage_types = [
+        'blog.BlogDetailPage',
+    ]
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
@@ -63,13 +68,12 @@ class BlogListingPage(Page):
         return context
 
 
-class BlogDetailPage(Page):
+class BlogDetailPage(BannerPage):
     template = 'blog/post.html'
-
-    subtitle = models.CharField(
-        max_length=128,
-        blank=True,
-    )
+    subpage_types = []
+    parent_page_type = [
+        'blog.BlogListingPage',
+    ]
 
     author = models.ForeignKey(
         BlogAuthor,
@@ -99,8 +103,7 @@ class BlogDetailPage(Page):
         blank=True,
     )
 
-    content_panels = Page.content_panels + [
-        FieldPanel('subtitle'),
+    content_panels = BannerPage.content_panels + [
         ImageChooserPanel('image'),
         SnippetChooserPanel('author'),
         StreamFieldPanel('content'),

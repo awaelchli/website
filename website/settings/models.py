@@ -1,3 +1,4 @@
+from django.core.validators import RegexValidator
 from django.db import models
 from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel
 from wagtail.contrib.settings.models import BaseSetting
@@ -12,9 +13,15 @@ class GoogleAnalytics(BaseSetting):
         blank=True,
     )
     tracking_id = models.CharField(
-        max_length=14,  # UA-XXXXXXXXX-X
+        max_length=14,
         blank=True,
         verbose_name='Tracking ID',
+        validators=[
+            RegexValidator(
+                regex=r'^[uU][aA]-\d{4,9}-\d{1,4}$',  # UA-XXXXXXXXX-X
+                message='Enter a valid Google Analytics Tracking ID.',
+            )
+        ]
     )
 
     panels = [

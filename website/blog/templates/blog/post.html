@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+
+{% block content %}
+
+    {% image self.image fill-1500x500 as img %}
+
+    <header class="masthead" style="background-image: url({{ img.url }})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h1>{{ self.title }}</h1>
+                        <h2 class="subheading">{{ self.subtitle }}</h2>
+                        <span class="meta">
+                            by {{ self.author }} on {{ self.first_published_at|date:'F j, Y' }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    {% for block in self.content %}
+                        {% include_block block %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </article>
+
+
+{% endblock %}
+
+
