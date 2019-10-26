@@ -1,5 +1,6 @@
 {% load static wagtailuserbar %}
 {% load i18n mathjax %}
+{% load wagtailimages_tags %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -42,6 +43,32 @@
         {% wagtailuserbar %}
 
         {% include 'navigation/main.html' %}
+
+        {% block banner %}
+            {% image self.banner_image fill-1500x1000 as img %}
+            <header class="masthead" style="background-image: url({{ img.url }})">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10 mx-auto">
+                            {% block banner_content %}
+                                <div class="site-heading">
+                                    {% block banner_title %}
+                                        <h1>{{ self.banner_title }}</h1>
+                                    {% endblock %}
+                                    {% block banner_subtitle %}
+                                        <span class="subheading">{{ self.banner_subtitle }}</span>
+                                    {% endblock %}
+                                    {% block banner_text %}
+                                        {# some extra text#}
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </header>
+        {% endblock %}
 
         {% block content %}{% endblock %}
 
