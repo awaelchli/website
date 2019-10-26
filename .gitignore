@@ -107,3 +107,4 @@ venv.bak/
 website/.idea/
 media/
 website/secrets.json
+scratch/
