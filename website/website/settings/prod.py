@@ -5,6 +5,20 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 
+INSTALLED_APPS += [
+    'storages',
+]
+
+# Media files
+AWS_ACCESS_KEY_ID = SECRETS['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = SECRETS['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = SECRETS['AWS_STORAGE_BUCKET_NAME']
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+# Static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 COMPRESS_OFFLINE = True
 COMPRESS_CSS_FILTERS = [
@@ -14,6 +28,7 @@ COMPRESS_CSS_FILTERS = [
 COMPRESS_CSS_HASHING_METHOD = 'content'
 
 
+# Database
 DATABASES['default'] = dj_database_url.config()
 
 
@@ -24,7 +39,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 BASE_URL = 'https://www.aedug.com'
 
 
-# Allow all host headers
 ALLOWED_HOSTS = [
     'aedug.com',
     'www.aedug.com',
