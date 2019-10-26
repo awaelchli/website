@@ -7,6 +7,13 @@ from streams import blocks
 
 class FlexPage(Page):
     template = 'flex/flex_page.html'
+    subpage_types = [
+        'flex.FlexPage',
+    ]
+    parent_page_type = [
+        'home.HomePage',
+        'flex.FlexPage',
+    ]
 
     subtitle = models.CharField(
         max_length=128,

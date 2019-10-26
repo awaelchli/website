@@ -4,9 +4,21 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 
 from wagtail.core.models import Page, Orderable
 
+from blog.models import BlogListingPage
+from contact.models import ContactPage
+from flex.models import FlexPage
+
 
 class HomePage(Page):
     template = 'home/home_page.html'
+    subpage_types = [
+        'blog.BlogListingPage',
+        'contact.ContactPage',
+        'flex.FlexPage',
+    ]
+    parent_page_type = [
+        'wagtailcore.Page',
+    ]
     max_count = 1
 
     banner_title = models.CharField(

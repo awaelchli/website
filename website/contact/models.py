@@ -8,6 +8,11 @@ from wagtailcaptcha.models import WagtailCaptchaEmailForm
 
 class ContactPage(WagtailCaptchaEmailForm):
     template = 'contact/main.html'
+    subpage_types = []
+    parent_page_type = [
+        'home.HomePage',
+    ]
+    max_count = 1
 
     intro_text = RichTextField(blank=True)
     success_text = RichTextField(blank=True)

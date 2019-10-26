@@ -45,6 +45,10 @@ class BlogListingPage(Page):
     """ Lists all blog pages. """
 
     template = 'blog/listing_page.html'
+    max_count = 1
+    subpage_types = [
+        'blog.BlogDetailPage',
+    ]
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
@@ -65,6 +69,10 @@ class BlogListingPage(Page):
 
 class BlogDetailPage(Page):
     template = 'blog/post.html'
+    subpage_types = []
+    parent_page_type = [
+        'blog.BlogListingPage',
+    ]
 
     subtitle = models.CharField(
         max_length=128,
