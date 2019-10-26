@@ -82,14 +82,6 @@ class BlogDetailPage(BannerPage):
         on_delete=models.SET_NULL,
     )
 
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        blank=True,
-        null=True,
-        related_name='+',
-        on_delete=models.SET_NULL,
-    )
-
     content = StreamField(
         [
             ('richtext', blocks.RichTextBlock()),
@@ -104,7 +96,6 @@ class BlogDetailPage(BannerPage):
     )
 
     content_panels = BannerPage.content_panels + [
-        ImageChooserPanel('image'),
         SnippetChooserPanel('author'),
         StreamFieldPanel('content'),
     ]
