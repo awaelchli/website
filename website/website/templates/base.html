@@ -18,7 +18,7 @@
         <meta name="description" content="Adrian Wälchli's Personal Website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {% include 'favicon.html' %}
+        {% include 'other/favicon.html' %}
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'website/css/website.css' %}">
@@ -31,7 +31,7 @@
 
         {# Google Analytics #}
         {% with settings.settings.GoogleAnalytics.tracking_id as tracking_id %}
-            {% include 'analytics.html' %}
+            {% include 'other/analytics.html' %}
         {% endwith %}
     </head>
 
