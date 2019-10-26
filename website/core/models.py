@@ -8,18 +8,21 @@ class BannerPage(Page):
     banner_title = models.CharField(
         max_length=128,
         blank=True,
+        verbose_name='Title',
     )
     banner_subtitle = models.CharField(
         max_length=128,
         blank=True,
+        verbose_name='Subtitle',
     )
 
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
-        blank=False,
+        blank=True,
         null=True,
         related_name='+',
         on_delete=models.SET_NULL,
+        verbose_name='Image',
     )
 
     content_panels = Page.content_panels + [

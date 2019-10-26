@@ -2,10 +2,12 @@ from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
+
+from core.models import BannerPage
 from streams import blocks
 
 
-class FlexPage(Page):
+class FlexPage(BannerPage):
     template = 'flex/flex_page.html'
     subpage_types = [
         'flex.FlexPage',
@@ -14,11 +16,6 @@ class FlexPage(Page):
         'home.HomePage',
         'flex.FlexPage',
     ]
-
-    subtitle = models.CharField(
-        max_length=128,
-        blank=True
-    )
 
     content = StreamField(
         [
@@ -30,8 +27,7 @@ class FlexPage(Page):
         blank=True,
     )
 
-    content_panels = Page.content_panels + [
-        FieldPanel('subtitle'),
+    content_panels = BannerPage.content_panels + [
         StreamFieldPanel('content')
     ]
 
