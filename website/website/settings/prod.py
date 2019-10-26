@@ -21,6 +21,9 @@ DATABASES['default'] = dj_database_url.config()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
+BASE_URL = 'https://www.aedug.com'
+
+
 # Allow all host headers
 ALLOWED_HOSTS = [
     'aedug.com',
