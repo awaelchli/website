@@ -3,6 +3,7 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 
+
 {% block extra_css %}
      <link rel="stylesheet" type="text/css" href="{% static 'blog/css/post.css' %}">
 {% endblock %}
@@ -10,14 +11,18 @@
 
 {% block banner_content %}
     <div class="post-heading">
-        <h1>{{ self.banner_title }}</h1>
+        <h1>{% if self.banner_title %}
+                {{ self.banner_title }}
+            {% else %}
+                {{ self.title }}
+            {% endif %}
+        </h1>
         <h2 class="subheading">{{ self.banner_subtitle }}</h2>
         <span class="meta">
             by {{ self.author }} on {{ self.first_published_at|date:'F j, Y' }}
         </span>
     </div>
 {% endblock %}
-
 
 
 {% block content %}

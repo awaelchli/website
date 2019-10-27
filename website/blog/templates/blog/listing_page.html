@@ -14,10 +14,14 @@
                     <div class="post-preview">
                         <a href="{{ post.url }}">
                             <h2 class="post-title">
-                                {{ post.title }}
+                                {% if post.baner_title %}
+                                    {{ post.banner_title }}
+                                {% else %}
+                                    {{ post.title }}
+                                {% endif %}
                             </h2>
                             <h3 class="post-subtitle">
-                                {{ post.subtitle }}
+                                {{ post.banner_subtitle }}
                             </h3>
                         </a>
                         <p class="post-meta">
