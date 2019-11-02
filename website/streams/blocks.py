@@ -44,25 +44,28 @@ class SimpleRichTextBlock(blocks.RichTextBlock):
 
 
 class CardBlock(blocks.StructBlock):
-    """Cards with one image, text and some button(s)"""
 
     title = blocks.CharBlock(
         required=True,
     )
+    subtitle = blocks.CharBlock(
+        required=False,
+    )
+
     cards = blocks.ListBlock(
         blocks.StructBlock(
             [
                 ('image', ImageChooserBlock(required=True)),
                 ('title', blocks.CharBlock(required=True)),
                 ('text', blocks.TextBlock(required=True)),
-                ('button_page', blocks.PageChooserBlock(required=False)),
-                ('button_url', blocks.URLBlock(required=False)),
+                ('page', blocks.PageChooserBlock(required=False)),
+                ('url', blocks.URLBlock(required=False)),
             ]
         )
     )
 
     class Meta:
-        template = 'card_block.html'
+        template = 'streams/card_block.html'
         icon = 'edit'
         label = 'Cards'
 

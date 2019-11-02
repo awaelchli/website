@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load wagtailcore_tags %}
 
 
 {% block extra_css %}
@@ -9,40 +10,10 @@
 
 {% block content %}
 
-    <section id="service" class="services-mf route">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="title-box text-center">
-                        <h3 class="title-a">
-                            Blog
-                        </h3>
-                        <p class="subtitle-a">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        </p>
-                        <div class="line-mf"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card border-0 service-box">
-                        <img src="https://hips.hearstapps.com/digitalspyuk.cdnds.net/18/48/1543418640-marvel.jpg?resize=768:*" class="card-img-top" alt="...">
-                        <div class="service-content">
-                            <h2 class="s-title my-4 px-3 text-center">Web Design</h2>
-                            <p class="s-description my-4 px-3 text-center">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni adipisci eaque autem fugiat! Quia,
-                                provident vitae! Magni
-                                tempora perferendis eum non provident.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
+    <div class="container">
+        {% for block in self.content %}
+            {% include_block block %}
+        {% endfor %}
+    </div>
 
 {% endblock content %}

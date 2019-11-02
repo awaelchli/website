@@ -1,22 +1,13 @@
 
 .box-shadow,
-.paralax-mf,
-.service-box,
-.work-box,
-.card-blog {
+.simple-card {
   box-shadow: 0 13px 8px -10px rgba(0, 0, 0, 0.1);
 }
-
 
 .title-s {
   font-weight: 600;
   color: #1e1e1e;
   font-size: 1.1rem;
-}
-
-
-.title-box {
-  margin-bottom: 4rem;
 }
 
 .title-a {
@@ -36,28 +27,22 @@
   margin: 0 auto;
 }
 
-
-.title-box-2 {
-  margin-bottom: 3rem;
-}
-
-
-.service-box {
+.simple-card {
   background-color: #fff;
   /*padding: 2.5rem 1.3rem;*/
   border-radius: 1rem;
   margin-bottom: 3rem;
 }
 
-.service-box .card-img-top {
+.simple-card .card-img-top {
   border-radius: 1rem 1rem 0 0;
 }
 
-.service-box .s-title {
+.simple-card .s-title {
   font-size: 1.4rem;
   text-transform: uppercase;
 }
 
-.service-box .s-description {
+.simple-card .s-description {
   color: #4e4e4e;
 }

@@ -1,18 +1,48 @@
 {% load wagtailimages_tags %}
 
-<h1>{{ self.title }}</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="text-center mb-5">
+            <h3 class="title-a">
+                {{ self.title }}
+            </h3>
+            <p class="subtitle-a">
+                {% if self.subtitle %}
+                    {{ self.subtitle }}
+                {% endif %}
+            </p>
+            <div class="line-mf"></div>
+        </div>
+    </div>
+</div>
 
 <div class="card-deck">
     {% for card in self.cards %}
-        <div class="card">
-            {% image card.image fill-300x200 as img %}
-            <img src="{{ img.url }}" class="card-img-top" alt="{{ img.alt }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ card.title }}</h5>
-                <p class="card-text">{{ card.text}}</p>
-                <a class="btn btn-primary" href="{{ card.button_page.url }}">Page</a>
-                <a class="btn btn-primary" href="{{ card.button_url.url }}">URL</a>
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card border-0 simple-card my-3">
+
+                {% if card.page and not card.url %}
+                    <a class="stretched-link" href="{{ card.page.url }}"></a>
+                {% endif %}
+                {% if card.url and not card.page %}
+                    <a class="stretched-link" href="{{ card.url }}"></a>
+                {% endif %}
+
+                {% image card.image fill-300x200 as img %}
+                <img src="{{ img.url }}" class="card-img-top" alt="{{ img.alt }}">
+
+                <div class="service-content">
+                    <h2 class="s-title my-4 px-3 text-center">
+                        {{ card.title }}
+                    </h2>
+                    <p class="s-description my-4 px-3 text-center">
+                        {{ card.text }}
+                    </p>
+                </div>
             </div>
+
         </div>
     {% endfor %}
- </div>
+</div>
