@@ -1,0 +1,63 @@
+
+.box-shadow,
+.paralax-mf,
+.service-box,
+.work-box,
+.card-blog {
+  box-shadow: 0 13px 8px -10px rgba(0, 0, 0, 0.1);
+}
+
+
+.title-s {
+  font-weight: 600;
+  color: #1e1e1e;
+  font-size: 1.1rem;
+}
+
+
+.title-box {
+  margin-bottom: 4rem;
+}
+
+.title-a {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.subtitle-a {
+  color: #4e4e4e;
+}
+
+.line-mf {
+  width: 40px;
+  height: 5px;
+  background-color: #811f00;
+  margin: 0 auto;
+}
+
+
+.title-box-2 {
+  margin-bottom: 3rem;
+}
+
+
+.service-box {
+  background-color: #fff;
+  /*padding: 2.5rem 1.3rem;*/
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+}
+
+.service-box .card-img-top {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.service-box .s-title {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+
+.service-box .s-description {
+  color: #4e4e4e;
+}
