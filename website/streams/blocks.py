@@ -1,3 +1,4 @@
+from django.core.validators import RegexValidator
 from wagtail.core import blocks
 from wagtail.core.blocks import StreamBlock
 from wagtail.images.blocks import ImageChooserBlock
@@ -134,3 +135,20 @@ class MathBlock(blocks.StructBlock):
         eq = eq.strip()
         value['equation'] = eq
         return value
+
+
+class YouTubeBlock(blocks.StructBlock):
+
+    video_id = blocks.RegexBlock(
+        regex=r'^[a-zA-Z0-9_-]{11}$',
+        max_length=11,
+        min_length=11,
+        required=True,
+        label='Video ID',
+    )
+
+    class Meta:
+        template = 'streams/youtube_block.html'
+        icon = 'fa-youtube-play'
+        label = 'YouTube Video'
+

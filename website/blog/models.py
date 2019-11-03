@@ -4,7 +4,6 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiField
 from wagtail.core.blocks import RawHTMLBlock, BlockQuoteBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
-from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
@@ -87,10 +86,10 @@ class BlogDetailPage(BannerPage):
             ('richtext', blocks.RichTextBlock()),
             ('image', blocks.FigureBlock()),
             ('code', blocks.CodeFragmentBlock()),
-            ('HTML', RawHTMLBlock()),
+            ('HTML', RawHTMLBlock(icon='fa-html5')),
             ('latex', blocks.MathBlock()),
             ('blockquote', BlockQuoteBlock()),
-            ('embed', EmbedBlock()),
+            ('youtube', blocks.YouTubeBlock()),
         ],
         blank=True,
     )
