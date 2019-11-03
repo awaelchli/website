@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <div class="text-center mb-5">
+        <div class="text-center mb-3">
             <h3 class="title-a">
                 {{ self.title }}
             </h3>
@@ -19,9 +19,9 @@
 
 <div class="card-deck">
     {% for card in self.cards %}
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 py-3">
 
-            <div class="card border-0 simple-card my-3">
+            <div class="card border-0 simple-card h-100">
 
                 {% if card.page and not card.url %}
                     <a class="stretched-link" href="{{ card.page.url }}"></a>
