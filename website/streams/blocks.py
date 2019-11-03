@@ -147,6 +147,18 @@ class YouTubeBlock(blocks.StructBlock):
         label='Video ID',
     )
 
+    aspect_ratio = blocks.ChoiceBlock(
+        choices=[
+            ('1by1', '1:1'),
+            ('4by3', '4:3'),
+            ('16by9', '16:9'),
+            ('21by9', '21:9'),
+        ],
+        default='16by9',
+        required=True,
+        label='Aspect Ratio',
+    )
+
     class Meta:
         template = 'streams/youtube_block.html'
         icon = 'fa-youtube-play'
