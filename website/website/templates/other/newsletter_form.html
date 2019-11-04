@@ -1,0 +1,18 @@
+{% load newsletter_tags %}
+{% load crispy_forms_tags %}
+
+
+{% get_newsletter_form as form %}
+
+
+<form action="#" method="POST" role="form">
+    {% csrf_token %}
+    <div class="form-row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-md-6 ">
+            {{ form.email|as_crispy_field }}
+        </div>
+    </div>
+    <div class="form-row justify-content-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

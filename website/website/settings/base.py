@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'wagtailcodeblock',
     'pydjax',
     'wagtailautocomplete',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -195,3 +196,7 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
 
 # Mathjax plugin
 MATHJAX_ENABLED = True
+
+
+# Crispy Forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
