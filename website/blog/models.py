@@ -1,12 +1,13 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, BaseChooserPanel
 from wagtail.core.blocks import RawHTMLBlock, BlockQuoteBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
+from wagtailautocomplete.edit_handlers import AutocompletePanel
 
 from core.models import BannerPage
 from settings.models import Blog as BlogSettings
@@ -48,6 +49,7 @@ class BlogListingPage(BannerPage):
     max_count = 1
     subpage_types = [
         'blog.BlogDetailPage',
+        'blog.MovieReview',
     ]
 
     def get_context(self, request, *args, **kwargs):
@@ -98,3 +100,25 @@ class BlogDetailPage(BannerPage):
         SnippetChooserPanel('author'),
         StreamFieldPanel('content'),
     ]
+
+
+class MovieReview(BlogDetailPage):
+    template = 'blog/post.html'
+    subpage_types = []
+    parent_page_type = [
+        'blog.BlogListingPage',
+    ]
+
+    movie = models.ForeignKey(
+        'movies.Movie',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+
+    content_panels = Page.content_panels + [
+        SnippetChooserPanel('author'),
+        AutocompletePanel('movie'),
+        StreamFieldPanel('content'),
+    ]
+

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'flex',
     'home',
     'menus',
+    'movies',
     'search',
     'settings',
     'streams',
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.contrib.settings',
+    'wagtail.contrib.modeladmin',
     'wagtail.contrib.sitemaps',
     'wagtail.embeds',
     'wagtail.sites',
@@ -65,6 +67,7 @@ INSTALLED_APPS = [
     'wagtailcaptcha',
     'wagtailcodeblock',
     'pydjax',
+    'wagtailautocomplete',
 ]
 
 MIDDLEWARE = [
