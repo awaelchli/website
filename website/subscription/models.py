@@ -35,7 +35,12 @@ class SubscriptionPage(BannerPage):
         if request.method == 'POST':
             form = NewsletterSubscriptionForm(request.POST)
             if form.is_valid():
-                subscriber = form.save()
+                subscriber = form.save(commit=False)
+                if NewsletterSubscription.objects.filter(email=subscriber.email).exists():
+                    context['error_message'] = """This email address is already subscribed. 
+                    You will continue to receive updates."""
+                else:
+                    subscriber.save()
                 return render(request, 'subscription/main_landing.html', context)
         else:
             form = NewsletterSubscriptionForm()

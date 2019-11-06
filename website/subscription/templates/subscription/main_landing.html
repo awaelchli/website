@@ -5,7 +5,13 @@
 {% block content %}
 
     <div class="container">
-        <p>{{ self.success_text|richtext }}</p>
+
+        {% if  error_message %}
+            <p class="text-center">{{ error_message }}</p>
+        {% else %}
+            <p>{{ self.success_text|richtext }}</p>
+        {% endif %}
+
     </div>
 
 {% endblock %}
