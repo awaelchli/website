@@ -35,12 +35,3 @@ class BannerPage(Page):
             heading='Banner'
         )
     ]
-
-
-class NewsletterSubscription(models.Model):
-    email = models.EmailField(
-        blank=False
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )

@@ -1,7 +1,7 @@
 from crispy_forms.helper import FormHelper
 from django import forms
 
-from core.models import NewsletterSubscription
+from subscription.models import NewsletterSubscription
 
 
 class NewsletterSubscriptionForm(forms.ModelForm):

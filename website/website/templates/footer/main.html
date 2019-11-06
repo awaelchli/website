@@ -42,7 +42,12 @@
                     {% endif %}
                 </ul>
 
-                {% include 'other/newsletter_form.html' %}
+                {% if not hide_newsletter_info %}
+                    <div class="text-center">
+                        <p>Want to get notified about new posts?</p>
+                        <a class="btn btn-primary" href="/subscribe">Subscribe</a>
+                    </div>
+                {% endif %}
 
                 <p class="copyright text-muted">
                     This website was made under the influence of the

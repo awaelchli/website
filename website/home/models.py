@@ -18,6 +18,7 @@ class HomePage(BannerPage):
         'blog.BlogListingPage',
         'contact.ContactPage',
         'flex.FlexPage',
+        'subscription.SubscriptionPage'
     ]
     parent_page_type = [
         'wagtailcore.Page',
