@@ -1,3 +1,2 @@
 python website/manage.py migrate
 python website/manage.py loaddata website/menus/fixtures/menus.json
-python website/manage.py loaddata website/subscription/fixtures/subscription.json

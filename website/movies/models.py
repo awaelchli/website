@@ -22,7 +22,7 @@ class Movie(models.Model):
         null=True,
     )
     release_date = models.DateField(
-        blank=True,
+        blank=False,
     )
     poster = models.ForeignKey(
         'wagtailimages.Image',

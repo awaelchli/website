@@ -4,6 +4,7 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiField
 from wagtail.core.blocks import RawHTMLBlock, BlockQuoteBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
+from wagtail.core.signals import page_published
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
@@ -12,6 +13,7 @@ from wagtailautocomplete.edit_handlers import AutocompletePanel
 from core.models import BannerPage
 from settings.models import Blog as BlogSettings
 from streams import blocks
+from subscription.notification import notify_subscribers
 
 
 @register_snippet
@@ -122,3 +124,7 @@ class MovieReview(BlogDetailPage):
         StreamFieldPanel('content'),
     ]
 
+
+# Send notifications for certain types of posts
+page_published.connect(notify_subscribers, sender=BlogDetailPage)
+page_published.connect(notify_subscribers, sender=MovieReview)
