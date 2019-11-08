@@ -45,7 +45,9 @@
                 {% if not hide_newsletter_info %}
                     <div class="text-center">
                         <p>Want to get notified about new posts?</p>
-                        <a class="btn btn-primary" href="/subscribe">Subscribe</a>
+                        <a class="btn btn-primary" href="{{ settings.settings.Subscription.subscription_page.url }}">
+                            Subscribe
+                        </a>
                     </div>
                 {% endif %}
 

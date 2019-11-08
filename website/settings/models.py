@@ -1,11 +1,11 @@
 from django.core.validators import RegexValidator
 from django.db import models
-from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel
+from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, PageChooserPanel
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.registry import register_setting
 
 
-@register_setting
+@register_setting(icon='fa-bar-chart')
 class GoogleAnalytics(BaseSetting):
 
     name = models.CharField(
@@ -62,7 +62,7 @@ class SocialMedia(BaseSetting):
         verbose_name = 'Social Media'
 
 
-@register_setting
+@register_setting(icon='fa-th')
 class Blog(BaseSetting):
 
     num_posts_per_page = models.PositiveIntegerField(
@@ -77,3 +77,41 @@ class Blog(BaseSetting):
 
     class Meta:
         verbose_name = 'Blog'
+
+
+@register_setting(icon='fa-newspaper-o')
+class Subscription(BaseSetting):
+
+    subscription_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name='Subscription Page'
+    )
+
+    email_subject = models.CharField(
+        max_length=128,
+        blank=True,
+        verbose_name='Email Subject'
+    )
+
+    panels = [
+        PageChooserPanel('subscription_page', 'subscription.SubscriptionPage'),
+        MultiFieldPanel(
+            [
+                FieldPanel('email_subject'),
+            ],
+            heading='Email Newsletter'
+        ),
+        MultiFieldPanel(
+            [
+                # FieldPanel('email_subject'),
+            ],
+            heading='Telegram Channel'
+        )
+    ]
+
+    class Meta:
+        verbose_name = 'Subscription'

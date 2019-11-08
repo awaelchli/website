@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags %}
+
+
+{% block content %}
+
+    <div class="container">
+    {% if email %}
+        <p class="text-center">
+            Got it. We will no longer send updates to {{ email }}.
+        </p>
+    {% else %}
+        <p class="text-center">
+            Got it. You will no longer receive emails from us.
+        </p>
+    {% endif %}
+    </div>
+
+{% endblock %}
