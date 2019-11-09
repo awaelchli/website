@@ -1,10 +1,12 @@
+// Colors
 $theme-colors: (
   "primary": #000000,
   "secondary": #424242
 );
+$active-color: #000738;
 
 // Buttons
-$border-radius: 10rem;
+$btn-border-radius: 10rem;
 
 $btn-padding-y: .75rem;
 $btn-padding-x: 1.5rem;
@@ -12,8 +14,10 @@ $btn-padding-x: 1.5rem;
 $pagination-padding-y: .75rem;
 $pagination-padding-x: 1.5rem;
 
+$component-active-bg: $active-color;
+
 // Links
-$link-color: #290303;
+$link-color: $active-color;
 $link-decoration:                         none;
 $link-hover-color:                        darken($link-color, 15%) ;
 $link-hover-decoration:                   underline;

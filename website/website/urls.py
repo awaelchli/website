@@ -3,7 +3,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.urls import path
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
@@ -50,4 +50,5 @@ if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
+        path('bootstrap/', TemplateView.as_view(template_name='other/bootstrap_elements.html')),
     ] + urlpatterns
