@@ -18,13 +18,17 @@ def notify_newsletter_subscribers(instance):
     subscription_settings = Subscription.for_site(instance.get_site())
     recipients = NewsletterSubscription.objects.all()
     subject = subscription_settings.email_subject
-    subscription_page = subscription_settings.subscription_page.specific
+    subscription_page = subscription_settings.subscription_page
     messages = []
     for recipient in recipients:
         plaintext = get_template('subscription/newsletter/email.txt')
         html = get_template('subscription/newsletter/email.html')
+        if subscription_page:
+            unsubscribe_url = subscription_page.specific.get_unsubscribe_url_for(recipient)
+        else:
+            unsubscribe_url = None
         context = {
-            'unsubscribe_url': subscription_page.get_unsubscribe_url_for(recipient)
+            'unsubscribe_url': unsubscribe_url
         }
         text_content = plaintext.render(context)
         html_content = html.render(context)

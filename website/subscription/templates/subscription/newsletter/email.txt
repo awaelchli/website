@@ -4,5 +4,7 @@ Adrian posted new content on his site. Go check it out.
 www.aedug.com
 
 This is an automated message. Do not reply to this email.
+{% if unsubscribe_url %}
 If you wish to unsubscribe from all future updates, click here:
 {{ unsubscribe_url }}
+{% endif %}
