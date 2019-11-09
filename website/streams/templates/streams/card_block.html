@@ -1,21 +1,9 @@
 {% load wagtailimages_tags %}
 
 
-<div class="row">
-    <div class="col-sm-12">
-        <div class="text-center mb-3">
-            <h3 class="title-a">
-                {{ self.title }}
-            </h3>
-            <p class="subtitle-a">
-                {% if self.subtitle %}
-                    {{ self.subtitle }}
-                {% endif %}
-            </p>
-            <div class="line-mf"></div>
-        </div>
-    </div>
-</div>
+{% with title=self.title subtitle=self.subtitle %}
+    {% include 'other/section_header.html' %}
+{% endwith %}
 
 <div class="card-deck">
     {% for card in self.cards %}

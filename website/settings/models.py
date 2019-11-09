@@ -97,6 +97,23 @@ class Subscription(BaseSetting):
         verbose_name='Email Subject'
     )
 
+    telegram_channel_id = models.CharField(
+        max_length=128,
+        blank=True,
+        verbose_name='Channel ID',
+    )
+
+    telegram_bot_token = models.CharField(
+        max_length=128,
+        blank=True,
+        verbose_name='Bot API Key',
+    )
+
+    telegram_invite_link = models.URLField(
+        blank=True,
+        verbose_name='Invite Link'
+    )
+
     panels = [
         PageChooserPanel('subscription_page', 'subscription.SubscriptionPage'),
         MultiFieldPanel(
@@ -107,7 +124,9 @@ class Subscription(BaseSetting):
         ),
         MultiFieldPanel(
             [
-                # FieldPanel('email_subject'),
+                FieldPanel('telegram_channel_id'),
+                FieldPanel('telegram_bot_token'),
+                FieldPanel('telegram_invite_link'),
             ],
             heading='Telegram Channel'
         )

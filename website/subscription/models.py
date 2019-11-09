@@ -1,6 +1,6 @@
 from django.db import models
 from django.shortcuts import render
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.contrib.forms.models import AbstractFormField, AbstractEmailForm
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import RichTextField
@@ -18,12 +18,33 @@ class SubscriptionPage(RoutablePageMixin, BannerPage):
     ]
     max_count = 1
 
-    intro_text = RichTextField(blank=True)
-    success_text = RichTextField(blank=True)
+    email_intro_text = RichTextField(
+        blank=True,
+        verbose_name='Intro Text',
+    )
+    email_success_text = RichTextField(
+        blank=True,
+        verbose_name='Success Text',
+    )
+    telegram_intro_text = RichTextField(
+        blank=True,
+        verbose_name='Intro Text',
+    )
 
     content_panels = BannerPage.content_panels + [
-        FieldPanel('intro_text', classname='full'),
-        FieldPanel('success_text', classname='full'),
+        MultiFieldPanel(
+            [
+                FieldPanel('email_intro_text'),
+                FieldPanel('email_success_text'),
+            ],
+            heading='Email'
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('telegram_intro_text')
+            ],
+            heading='Telegram'
+        ),
     ]
 
     def get_context(self, request, *args, **kwargs):
