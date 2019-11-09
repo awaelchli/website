@@ -1,0 +1,22 @@
+$theme-colors: (
+  "primary": #000000,
+  "secondary": #424242
+);
+
+// Buttons
+$border-radius: 10rem;
+
+$btn-padding-y: .75rem;
+$btn-padding-x: 1.5rem;
+
+$pagination-padding-y: .75rem;
+$pagination-padding-x: 1.5rem;
+
+// Links
+$link-color: #290303;
+$link-decoration:                         none;
+$link-hover-color:                        darken($link-color, 15%) ;
+$link-hover-decoration:                   underline;
+
+
+@import "node_modules/bootstrap/scss/bootstrap";

@@ -108,3 +108,4 @@ website/.idea/
 media/
 website/secrets.json
 scratch/
+node_modules
