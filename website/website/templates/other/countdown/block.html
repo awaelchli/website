@@ -1,0 +1,13 @@
+<div class="row justify-content-center time-block hours" data-init-value="{{ number }}">
+    <div class="col col-12">
+        <span class="count-title">{{ counter_title }}</span>
+    </div>
+
+    {% with digit=number|get_digit:"2" %}
+        {% include 'other/countdown/figure.html' %}
+    {% endwith %}
+
+    {% with digit=number|get_digit:"1" %}
+        {% include 'other/countdown/figure.html' %}
+    {% endwith %}
+</div>

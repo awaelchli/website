@@ -1,7 +1,11 @@
+import datetime
+
 from django.db import models
+from django.utils import timezone
 from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
-from wagtail.core.fields import StreamField
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel, FieldRowPanel, \
+    PageChooserPanel
+from wagtail.core.fields import StreamField, RichTextField
 
 from wagtail.core.models import Page, Orderable
 
@@ -40,10 +44,91 @@ class HomePage(BannerPage):
             heading='Achievements'
         ),
         StreamFieldPanel('content'),
+        MultiFieldPanel(
+            [
+                InlinePanel('countdowns', max_num=1),
+            ],
+            heading='Countdown',
+        ),
     ]
 
     class Meta:
         verbose_name = 'Home Page'
+
+    @property
+    def countdown(self):
+        return self.countdowns.first()
+
+
+class Countdown(Orderable):
+    page = ParentalKey(
+        'home.HomePage',
+        related_name='countdowns',
+    )
+    title = models.CharField(
+        max_length=100,
+        blank=True,
+    )
+
+    target = models.DateTimeField(
+        blank=False,
+    )
+
+    stop_at_zero = models.BooleanField(
+        blank=True,
+        default=False,
+    )
+
+    teaser_text = RichTextField(
+        blank=True,
+    )
+
+    reveal_text = RichTextField(
+        blank=True
+    )
+
+    reveal_page = models.ForeignKey(
+        'wagtailcore.Page',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('target'),
+        FieldPanel('stop_at_zero'),
+        FieldPanel('teaser_text'),
+        FieldPanel('reveal_text'),
+        PageChooserPanel('reveal_page'),
+    ]
+
+    @property
+    def delta(self):
+        return self.target - timezone.now()
+
+    @property
+    def seconds(self):
+        return self.delta.seconds % 60
+
+    @property
+    def minutes(self):
+        seconds = self.delta.seconds - self.seconds
+        minutes = seconds // 60
+        return minutes % 60
+
+    @property
+    def hours(self):
+        seconds = self.delta.seconds - self.seconds
+        hours = seconds // (60 * 60)
+        return hours % 24
+
+    @property
+    def days(self):
+        seconds = self.delta.seconds - self.seconds
+        days = seconds // (60 * 60 * 24)
+        return days
 
 
 class Statistics(Orderable):

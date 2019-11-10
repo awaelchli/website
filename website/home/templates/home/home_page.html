@@ -5,12 +5,30 @@
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/home.css' %}">
+    {% if self.countdown %}
+        <link rel="stylesheet" type="text/css" href="{% static 'website/css/countdown.css' %}">
+    {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+    {% if self.countdown %}
+        <script type="text/javascript" src="{% static 'website/js/countdown.js' %}"></script>
+        <script type="text/javascript" src="{% static 'website/js/TweenMax.min.js' %}"></script>
+    {% endif %}
 {% endblock %}
 
 
 {% block content %}
-
     <div class="container">
+
+        {% if self.countdown %}
+            {# Only one countdown per page supported. #}
+            {% with countdown=self.countdown %}
+                {% include 'other/countdown/main.html' %}
+            {% endwith %}
+        {% endif %}
+
+
         {% for block in self.content %}
             {% include_block block %}
         {% endfor %}
