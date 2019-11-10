@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load wagtailcore_tags %}
+{% load staticfiles %}
 
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'website/css/subscribe.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -9,7 +13,7 @@
         {% if  error_message %}
             <p class="text-center">{{ error_message }}</p>
         {% else %}
-            <p>{{ self.email_success_text|richtext }}</p>
+            {{ self.email_success_text|richtext }}
         {% endif %}
 
     </div>
