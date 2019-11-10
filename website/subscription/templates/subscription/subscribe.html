@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load wagtailcore_tags %}
 {% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'website/css/subscribe.css' %}">
+{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -9,7 +14,8 @@
             {% include 'other/section_header.html' %}
         {% endwith %}
 
-        <p>{{ self.email_intro_text|richtext }}</p>
+
+        {{ self.email_intro_text|richtext }}
 
         <form action="{% pageurl page %}" method="POST" role="form">
             {% csrf_token %}
@@ -28,7 +34,7 @@
                 {% include 'other/section_header.html' %}
             {% endwith %}
 
-            <p>{{ self.telegram_intro_text|richtext }}</p>
+            {{ self.telegram_intro_text|richtext }}
 
             <div class="text-center">
                 <a class="btn btn-primary" href="{{ settings.settings.Subscription.telegram_invite_link }}">
