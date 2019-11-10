@@ -1,0 +1,19 @@
+.social-link {
+    color: #282828;
+}
+
+.twitter-link:hover {
+    color: #1DA1F2;
+}
+
+.facebook-link:hover {
+    color: #4267B2;
+}
+
+.youtube-link:hover {
+    color: #FF0000;
+}
+
+.github-link:hover {
+    color: #171516;
+}
