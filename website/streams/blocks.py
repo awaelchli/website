@@ -67,7 +67,7 @@ class CardBlock(blocks.StructBlock):
 
     class Meta:
         template = 'streams/card_block.html'
-        icon = 'edit'
+        icon = 'fa-th-large'
         label = 'Cards'
 
 
