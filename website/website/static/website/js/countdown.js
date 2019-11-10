@@ -13,8 +13,8 @@ var Countdown = {
         // DOM
         this.$ = {
             hours: this.$el.find('.time-block.hours .figure'),
-            minutes: this.$el.find('.time-block.min .figure'),
-            seconds: this.$el.find('.time-block.sec .figure')
+            minutes: this.$el.find('.time-block.minutes .figure'),
+            seconds: this.$el.find('.time-block.seconds .figure')
         };
 
 
