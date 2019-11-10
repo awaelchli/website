@@ -1,4 +1,3 @@
-from django.core.validators import RegexValidator
 from wagtail.core import blocks
 from wagtail.core.blocks import StreamBlock
 from wagtail.images.blocks import ImageChooserBlock
