@@ -23,19 +23,21 @@
             </div>
         </form>
 
-        {% with title='Telegram' subtitle='' %}
-            {% include 'other/section_header.html' %}
-        {% endwith %}
+        {% if settings.settings.Subscription.telegram_invite_link %}
+            {% with title='Telegram' subtitle='' %}
+                {% include 'other/section_header.html' %}
+            {% endwith %}
 
-        <p>{{ self.telegram_intro_text|richtext }}</p>
+            <p>{{ self.telegram_intro_text|richtext }}</p>
 
-        <div class="text-center">
-            <a class="btn btn-primary" href="{{ settings.settings.Subscription.telegram_invite_link }}">
-                <i class="fab fa-telegram-plane align-top mr-2" aria-hidden="true" style="font-size:1.5rem;"></i>
-                <span>Join Channel</span>
-            </a>
-        </div>
-    
+            <div class="text-center">
+                <a class="btn btn-primary" href="{{ settings.settings.Subscription.telegram_invite_link }}">
+                    <i class="fab fa-telegram-plane align-top mr-2" aria-hidden="true" style="font-size:1.5rem;"></i>
+                    <span>Join Channel</span>
+                </a>
+            </div>
+        {% endif %}
+
     </div>
 
 {% endblock %}
