@@ -18,7 +18,7 @@
                     {{ form.email|as_crispy_field }}
                 </div>
             </div>
-            <div class="form-row justify-content-center">
+            <div class="form-row justify-content-center mt-2">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
@@ -31,10 +31,11 @@
 
         <div class="text-center">
             <a class="btn btn-primary" href="{{ settings.settings.Subscription.telegram_invite_link }}">
-                Join Channel
+                <i class="fab fa-telegram-plane align-top mr-2" aria-hidden="true" style="font-size:1.5rem;"></i>
+                <span>Join Channel</span>
             </a>
         </div>
-
+    
     </div>
 
 {% endblock %}
