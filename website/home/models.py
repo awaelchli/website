@@ -106,7 +106,8 @@ class Countdown(Orderable):
 
     @property
     def delta(self):
-        return self.target - timezone.now()
+        # Clip negative time delta to 0
+        return max(self.target - timezone.now(), datetime.timedelta(0))
 
     @property
     def seconds(self):
