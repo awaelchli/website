@@ -74,11 +74,6 @@ class Countdown(Orderable):
         blank=False,
     )
 
-    stop_at_zero = models.BooleanField(
-        blank=True,
-        default=False,
-    )
-
     teaser_text = RichTextField(
         blank=True,
     )
@@ -98,7 +93,6 @@ class Countdown(Orderable):
     panels = [
         FieldPanel('title'),
         FieldPanel('target'),
-        FieldPanel('stop_at_zero'),
         FieldPanel('teaser_text'),
         FieldPanel('reveal_text'),
         PageChooserPanel('reveal_page'),
