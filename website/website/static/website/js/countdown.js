@@ -90,7 +90,11 @@ var Countdown = {
 
                 --that.total_seconds;
             } else {
+                // Countdown finished
+                // Reveal content
                 clearInterval(that.countdown_interval);
+                $('#reveal-content')[0].removeAttribute('hidden');
+                $('#teaser-content')[0].setAttribute('hidden', true);
             }
         }, 1000);
     },

@@ -131,6 +131,10 @@ class Countdown(Orderable):
         days = seconds // (60 * 60 * 24)
         return days
 
+    @property
+    def finished(self):
+        return self.delta.seconds <= 0
+
 
 class Statistics(Orderable):
     page = ParentalKey(

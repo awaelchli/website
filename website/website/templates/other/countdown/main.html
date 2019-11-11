@@ -1,30 +1,28 @@
+{% load wagtailcore_tags %}
 
-<h1 class="text-center">{{ countdown.title }}</h1>
+{% if countdown.title %}
+    {% with title=countdown.title divider=False %}
+        {% include 'other/section_header.html' %}
+    {% endwith %}
+{% endif %}
 
 <div class="row countdown justify-content-center">
 
-    <div class="col col-6 col-lg-3">
-        {% with type='days' counter_title='Days' number=countdown.days %}
-            {% include 'other/countdown/block.html' %}
-        {% endwith %}
-    </div>
+    {% if not self.countdown.finished %}
+        {% include 'other/countdown/counter.html' %}
+    {% endif %}
 
-    <div class="col col-6 col-lg-3">
-        {% with type='hours' counter_title='Hours' number=countdown.hours %}
-            {% include 'other/countdown/block.html' %}
-        {% endwith %}
-    </div>
+    <div class="col col-12">
+        <div id="teaser-content" {% if countdown.finished %} hidden {% endif %}>
+            {{ countdown.teaser_text|richtext }}
+        </div>
 
-    <div class="col col-6 col-lg-3">
-        {% with type='minutes' counter_title='Minutes' number=countdown.minutes %}
-            {% include 'other/countdown/block.html' %}
-        {% endwith %}
-    </div>
-
-    <div class="col col-6 col-lg-3">
-        {% with type='seconds' counter_title='Seconds' number=countdown.seconds %}
-            {% include 'other/countdown/block.html' %}
-        {% endwith %}
+        <div id="reveal-content" class="text-center" {% if not countdown.finished %} hidden {% endif %}>
+            {{ countdown.reveal_text|richtext }}
+            <a class="btn btn-primary" href="{{ countdown.reveal_page.url }}">
+                Read
+            </a>
+        </div>
     </div>
 
 </div>
