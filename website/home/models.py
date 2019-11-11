@@ -3,8 +3,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel, FieldRowPanel, \
-    PageChooserPanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel, PageChooserPanel
 from wagtail.core.fields import StreamField, RichTextField
 
 from wagtail.core.models import Page, Orderable
