@@ -120,9 +120,7 @@ class Countdown(Orderable):
 
     @property
     def days(self):
-        seconds = self.delta.seconds - self.seconds
-        days = seconds // (60 * 60 * 24)
-        return days
+        return self.delta.days
 
     @property
     def finished(self):
