@@ -163,3 +163,17 @@ class YouTubeBlock(blocks.StructBlock):
         icon = 'fa-youtube-play'
         label = 'YouTube Video'
 
+
+class BlockQuoteBlock(blocks.StructBlock):
+
+    quote = blocks.CharBlock(
+        required=True,
+    )
+    source = blocks.TextBlock(
+        required=False
+    )
+
+    class Meta:
+        template = 'streams/blockquote.html'
+        icon = 'openquote'
+        label = 'Blockquote'

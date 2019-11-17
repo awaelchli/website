@@ -3,7 +3,7 @@ from abc import abstractmethod
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel
-from wagtail.core.blocks import RawHTMLBlock, BlockQuoteBlock, StreamBlock
+from wagtail.core.blocks import RawHTMLBlock, StreamBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.core.signals import page_published
@@ -93,7 +93,7 @@ class BlogDetailPage(BannerPage):
             ('code', blocks.CodeFragmentBlock()),
             ('HTML', RawHTMLBlock(icon='fa-html5')),
             ('latex', blocks.MathBlock()),
-            ('blockquote', BlockQuoteBlock()),
+            ('blockquote', blocks.BlockQuoteBlock()),
             ('youtube', blocks.YouTubeBlock()),
         ],
         blank=True,
@@ -195,5 +195,5 @@ class MovieReview(BlogDetailPage):
 
 # Send notifications for certain types of posts
 page_published.connect(notify_subscribers, sender=BlogDetailPage)
-# page_published.connect(notify_subscribers, sender=VideoProjectPage)
+page_published.connect(notify_subscribers, sender=VideoProjectPage)
 page_published.connect(notify_subscribers, sender=MovieReview)
