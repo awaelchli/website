@@ -1,0 +1,21 @@
+{% extends 'blog/post.html' %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <div style="position: relative; top: -10rem">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="card showcase-card border-0 rounded-lg shadow-lg p-2 p-lg-3">
+                        {% for block in self.creation %}
+                            {% include_block block %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ block.super }}
+
+    </div>
+{% endblock %}

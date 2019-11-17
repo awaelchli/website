@@ -1,7 +1,9 @@
+from abc import abstractmethod
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel
-from wagtail.core.blocks import RawHTMLBlock, BlockQuoteBlock
+from wagtail.core.blocks import RawHTMLBlock, BlockQuoteBlock, StreamBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.core.signals import page_published
@@ -103,6 +105,73 @@ class BlogDetailPage(BannerPage):
     ]
 
 
+class CreationBase(BlogDetailPage):
+    subpage_types = []
+    parent_page_type = []
+
+    @property
+    @abstractmethod
+    def creation(self):
+        pass
+
+
+class VideoProjectPage(CreationBase):
+    template = 'blog/creative_hub/post.html'
+    subpage_types = []
+    parent_page_type = [
+        'blog.CreativeHub',
+    ]
+
+    video = StreamField(
+        StreamBlock(
+            [
+                ('youtube', blocks.YouTubeBlock())
+            ],
+            min_num=1,
+            max_num=1
+        )
+    )
+
+    content_panels = CreationBase.content_panels + [
+        StreamFieldPanel('video'),
+    ]
+
+    def creation(self):
+        return self.video
+
+
+class CreativeHub(BannerPage):
+    """ Lists all creative project pages. """
+    class Meta:
+        verbose_name = 'Creative Hub'
+
+    template = 'blog/creative_hub/listing_page.html'
+    max_count = 1
+    subpage_types = [
+        'blog.VideoProjectPage',
+    ]
+    parent_page_type = [
+        'home.HomePage',
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        all_posts = self.get_children().live().public().order_by('-first_published_at')
+        all_posts = [p.specific for p in all_posts]
+        posts_per_page = BlogSettings.for_site(request.site).num_posts_per_page
+        paginator = Paginator(all_posts, posts_per_page)
+        page_nr = request.GET.get('page')
+        try:
+            posts = paginator.page(page_nr)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        context['posts'] = posts
+        return context
+
+
 class MovieReview(BlogDetailPage):
     template = 'blog/post.html'
     subpage_types = []
@@ -126,4 +195,5 @@ class MovieReview(BlogDetailPage):
 
 # Send notifications for certain types of posts
 page_published.connect(notify_subscribers, sender=BlogDetailPage)
+# page_published.connect(notify_subscribers, sender=VideoProjectPage)
 page_published.connect(notify_subscribers, sender=MovieReview)
