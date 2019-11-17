@@ -1,4 +1,6 @@
-#blog-post-blocks p, ul, ol{
+#blog-post-blocks p,
+#blog-post-blocks ul,
+#blog-post-blocks ol {
     font-size: 20px;
     font-family: 'Lora', 'Times New Roman', serif;
 }
