@@ -1,7 +1,10 @@
-#blog-post-blocks p {
+#blog-post-blocks {
     font-size: 20px;
-    text-align: justify;
     font-family: 'Lora', 'Times New Roman', serif;
+}
+
+#blog-post-blocks p {
+    text-align: justify;
 }
 
 .showcase-card {
