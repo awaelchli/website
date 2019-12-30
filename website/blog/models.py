@@ -151,7 +151,7 @@ class CreativeHub(BlogListingPage):
         verbose_name = 'Creative Hub'
 
     template = 'blog/creative_hub/listing_page.html'
-    max_count = 1
+    max_count = 3
     subpage_types = [
         'blog.VideoProjectPage',
     ]
