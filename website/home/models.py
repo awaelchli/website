@@ -20,6 +20,7 @@ class HomePage(BannerPage):
     subpage_types = [
         'blog.BlogListingPage',
         'blog.CreativeHub',
+        'blog.CreativeHub2',
         'contact.ContactPage',
         'flex.FlexPage',
         'subscription.SubscriptionPage'

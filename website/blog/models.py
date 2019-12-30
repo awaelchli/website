@@ -52,12 +52,16 @@ class BlogListingPage(BannerPage):
     max_count = 1
     subpage_types = [
         'blog.BlogDetailPage',
-        'blog.MovieReview',
+    ]
+    parent_page_type = [
+        'home.HomePage',
     ]
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        all_posts = BlogDetailPage.objects.live().public().order_by('-first_published_at')
+        # all_posts = BlogDetailPage.objects.live().public().order_by('-first_published_at')
+        all_posts = self.get_children().live().public().order_by('-first_published_at')
+        all_posts = [p.specific for p in all_posts]
         posts_per_page = BlogSettings.for_site(request.site).num_posts_per_page
         paginator = Paginator(all_posts, posts_per_page)
         page_nr = request.GET.get('page')
@@ -138,6 +142,21 @@ class VideoProjectPage(CreationBase):
 
     def creation(self):
         return self.video
+
+
+class CreativeHub2(BlogListingPage):
+    """ Lists all creative project pages. """
+    class Meta:
+        verbose_name = 'Creative Hub 2'
+
+    template = 'blog/creative_hub/listing_page.html'
+    max_count = 1
+    subpage_types = [
+        'blog.VideoProjectPage',
+    ]
+    parent_page_type = [
+        'home.HomePage',
+    ]
 
 
 class CreativeHub(BannerPage):
