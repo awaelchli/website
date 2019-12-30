@@ -182,6 +182,7 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ('django', 'Django/Jinja2'),
     ('git', 'Git'),
     ('java', 'Java'),
+    ('html', 'HTML'),
     ('javascript', 'JavaScript'),
     ('json', 'JSON'),
     ('latex', 'LaTeX'),
