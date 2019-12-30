@@ -4,9 +4,5 @@
     Adrian posted new content on his site. Go check it out.
     <a href="https://www.aedug.com">www.aedug.com</a>
     <br><br>
-    This is an automated message. Do not reply to this email.
-    {% if unsubscribe_url %}
-        If you wish to unsubscribe from all future updates, click
-        <a href="{{ unsubscribe_url }}">here</a>.
-    {% endif %}
+    {% include 'subscription/message/footer.html' %}
 </p>
