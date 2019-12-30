@@ -144,10 +144,10 @@ class VideoProjectPage(CreationBase):
         return self.video
 
 
-class CreativeHub2(BlogListingPage):
+class CreativeHub(BlogListingPage):
     """ Lists all creative project pages. """
     class Meta:
-        verbose_name = 'Creative Hub 2'
+        verbose_name = 'Creative Hub'
 
     template = 'blog/creative_hub/listing_page.html'
     max_count = 1

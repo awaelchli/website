@@ -19,7 +19,7 @@ class HomePage(BannerPage):
     template = 'home/home_page.html'
     subpage_types = [
         'blog.BlogListingPage',
-        'blog.CreativeHub2',
+        'blog.CreativeHub',
         'contact.ContactPage',
         'flex.FlexPage',
         'subscription.SubscriptionPage'
