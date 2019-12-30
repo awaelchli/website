@@ -159,38 +159,6 @@ class CreativeHub2(BlogListingPage):
     ]
 
 
-class CreativeHub(BannerPage):
-    """ Lists all creative project pages. """
-    class Meta:
-        verbose_name = 'Creative Hub'
-
-    template = 'blog/creative_hub/listing_page.html'
-    max_count = 1
-    subpage_types = [
-        'blog.VideoProjectPage',
-    ]
-    parent_page_type = [
-        'home.HomePage',
-    ]
-
-    def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
-        all_posts = self.get_children().live().public().order_by('-first_published_at')
-        all_posts = [p.specific for p in all_posts]
-        posts_per_page = BlogSettings.for_site(request.site).num_posts_per_page
-        paginator = Paginator(all_posts, posts_per_page)
-        page_nr = request.GET.get('page')
-        try:
-            posts = paginator.page(page_nr)
-        except PageNotAnInteger:
-            posts = paginator.page(1)
-        except EmptyPage:
-            posts = paginator.page(paginator.num_pages)
-
-        context['posts'] = posts
-        return context
-
-
 class MovieReview(BlogDetailPage):
     template = 'blog/post.html'
     subpage_types = []
