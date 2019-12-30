@@ -171,7 +171,7 @@ RECAPTCHA_PRIVATE_KEY = SECRETS['RECAPTCHA_PRIVATE_KEY']
 NOCAPTCHA = True
 
 # Wagtail code block plugin
-WAGTAIL_CODE_BLOCK_THEME = 'default'
+WAGTAIL_CODE_BLOCK_THEME = 'tomorrow'
 
 WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ('bash', 'Bash + Shell'),

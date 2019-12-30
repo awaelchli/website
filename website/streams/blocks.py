@@ -70,17 +70,17 @@ class CardBlock(blocks.StructBlock):
         label = 'Cards'
 
 
-class CodeFragmentBlock(StreamBlock):
-
-    code = wagtailcodeblock.blocks.CodeBlock(
-        label='Code'
-    )
+class CodeFragmentBlock(wagtailcodeblock.blocks.CodeBlock):
 
     caption = blocks.TextBlock(
         required=False
     )
 
+    def __init__(self, *args, **kwargs):
+        super(CodeFragmentBlock, self).__init__(*args, **kwargs)
+
     class Meta:
+        template = 'streams/code_fragment_block.html'
         icon = 'code'
         label = 'Code Fragment'
 
