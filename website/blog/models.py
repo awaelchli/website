@@ -52,7 +52,6 @@ class BlogListingPage(BannerPage):
     max_count = 1
     subpage_types = [
         'blog.BlogDetailPage',
-        'blog.VideoProjectPage',
     ]
     parent_page_type = [
         'home.HomePage',
