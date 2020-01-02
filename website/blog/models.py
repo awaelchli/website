@@ -2,7 +2,7 @@ from abc import abstractmethod
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, TabbedInterface, ObjectList
 from wagtail.core.blocks import RawHTMLBlock, StreamBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
@@ -90,6 +90,16 @@ class BlogDetailPage(BannerPage):
         on_delete=models.SET_NULL,
     )
 
+    notify_newsletter_subscribers = models.BooleanField(
+        default=False,
+        verbose_name='Newsletter',
+    )
+
+    notify_telegram_subscribers = models.BooleanField(
+        default=False,
+        verbose_name='Telegram',
+    )
+
     content = StreamField(
         [
             ('richtext', blocks.RichTextBlock()),
@@ -107,6 +117,26 @@ class BlogDetailPage(BannerPage):
         SnippetChooserPanel('author'),
         StreamFieldPanel('content'),
     ]
+
+    notifications_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('notify_newsletter_subscribers'),
+                FieldPanel('notify_telegram_subscribers'),
+            ],
+            heading='Channels',
+            help_text='Choose which channels to notifiy about this blog post.'
+        )
+    ]
+
+    edit_handler = TabbedInterface(
+        [
+            ObjectList(content_panels, heading='Content'),
+            ObjectList(BannerPage.promote_panels, heading='Promote'),
+            ObjectList(BannerPage.settings_panels, heading='Settings'),
+            ObjectList(notifications_panels, heading="Notifications"),
+        ]
+    )
 
 
 class CreationBase(BlogDetailPage):
