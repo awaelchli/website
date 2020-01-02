@@ -1,17 +1,32 @@
+from smtplib import SMTPException
+
 import telegram
 from django.core import mail
 from django.conf import settings
 from django.template.loader import get_template
 from telegram import ParseMode
 
+# from blog.models import BlogDetailPage
 from settings.models import Subscription
 from subscription.models import NewsletterSubscription, SubscriptionPage
 
 
 def notify_subscribers(sender, instance, **kwargs):
-    if instance.first_published_at == instance.last_published_at:
-        notify_newsletter_subscribers(instance)
+    # if instance.first_published_at == instance.last_published_at:
+
+    if instance.notify_newsletter_subscribers:
+        try:
+            notify_newsletter_subscribers(instance)
+        except SMTPException as e:
+            raise e
+        else:
+            instance.notify_newsletter_subscribers = False
+            instance.save()
+
+    if instance.notify_telegram_subscribers:
         notify_telegram_channel(instance)
+        instance.notify_telegram_subscribers = False
+        instance.save()
 
 
 def notify_newsletter_subscribers(instance):
