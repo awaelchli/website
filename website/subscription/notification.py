@@ -45,7 +45,8 @@ def notify_newsletter_subscribers(instance):
         else:
             unsubscribe_url = None
         context = {
-            'unsubscribe_url': unsubscribe_url
+            'post': instance,
+            'unsubscribe_url': unsubscribe_url,
         }
         text_content = plaintext.render(context)
         html_content = html.render(context)
