@@ -118,23 +118,29 @@ class BlogDetailPage(BannerPage):
         StreamFieldPanel('content'),
     ]
 
-    notifications_panels = [
-        MultiFieldPanel(
-            [
-                FieldPanel('notify_newsletter_subscribers'),
-                FieldPanel('notify_telegram_subscribers'),
-            ],
-            heading='Channels',
-            help_text='Choose which channels to notifiy about this blog post.'
-        )
-    ]
-
     edit_handler = TabbedInterface(
         [
-            ObjectList(content_panels, heading='Content'),
-            ObjectList(BannerPage.promote_panels, heading='Promote'),
-            ObjectList(BannerPage.settings_panels, heading='Settings'),
-            ObjectList(notifications_panels, heading="Notifications"),
+            ObjectList(
+                content_panels,
+                heading='Content'
+            ),
+            ObjectList(
+                BannerPage.promote_panels,
+                heading='Promote'
+            ),
+            ObjectList(
+                BannerPage.settings_panels + [
+                    MultiFieldPanel(
+                        [
+                            FieldPanel('notify_newsletter_subscribers'),
+                            FieldPanel('notify_telegram_subscribers'),
+                        ],
+                        heading='Notification Channels',
+                        help_text='Choose which channels to notifiy about this blog post.'
+                    )
+                ],
+                heading='Settings'
+            ),
         ]
     )
 
