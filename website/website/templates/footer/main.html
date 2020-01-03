@@ -31,6 +31,15 @@
                         </a>
                     </li>
                     {% endif %}
+                    {% if settings.settings.SocialMedia.discord %}
+                    <li class="list-inline-item">
+                        <a class="social-link discord-link" href="{{ settings.settings.SocialMedia.discord }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fab fa-discord fa-stack-1x"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
                     {% if settings.settings.SocialMedia.github %}
                     <li class="list-inline-item">
                         <a class="social-link github-link" href="{{ settings.settings.SocialMedia.github }}">

@@ -45,6 +45,7 @@ class SocialMedia(BaseSetting):
     twitter = models.URLField(blank=True)
     youtube = models.URLField(blank=True)
     github = models.URLField(blank=True)
+    discord = models.URLField(blank=True)
 
     panels = [
         MultiFieldPanel(
@@ -53,6 +54,7 @@ class SocialMedia(BaseSetting):
                 FieldPanel('twitter'),
                 FieldPanel('youtube'),
                 FieldPanel('github'),
+                FieldPanel('discord'),
             ],
             heading='Social Media Settings'
         )
