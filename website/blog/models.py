@@ -195,6 +195,21 @@ class CreativeHub(BlogListingPage):
     ]
 
 
+class HackerCave(BlogListingPage):
+    """ List all hacker project pages. """
+    class Meta:
+        verbose_name = 'Hacker Cave'
+
+    template = 'blog/hacker_cave/listing_page.html'
+    max_count = 1
+    subpage_types = {
+        'blog.BlogDetailPage',
+    }
+    parent_page_type = [
+        'home.HomePage',
+    ]
+
+
 class MovieReview(BlogDetailPage):
     template = 'blog/post.html'
     subpage_types = []
