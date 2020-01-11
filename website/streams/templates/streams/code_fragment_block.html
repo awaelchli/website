@@ -27,6 +27,8 @@
     {% endfor %}
 {% endspaceless %}
 
-<span class="caption text-muted">
-    {{ self.caption }}
-</span>
+{% if self.caption %}
+    <span class="caption text-muted">
+        {{ self.caption }}
+    </span>
+{% endif %}
