@@ -5,7 +5,15 @@
 
 
 {% block extra_css %}
-     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/post.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/post.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'wagtailcodeblock/css/prism.min.css' %}" >
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/prism-command-line.css' %}">
+{% endblock %}
+
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'wagtailcodeblock/js/prism.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'blog/js/prism-command-line.min.js' %}"></script>
 {% endblock %}
 
 

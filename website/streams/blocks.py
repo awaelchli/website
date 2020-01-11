@@ -76,6 +76,15 @@ class CodeFragmentBlock(wagtailcodeblock.blocks.CodeBlock):
         required=False
     )
 
+    prefix = blocks.ChoiceBlock(
+        choices=[
+            ('line-numbers', 'Line Numbers'),
+            ('prompt', 'Command Line Prompt'),
+        ],
+        default='line-numbers',
+        required=True,
+    )
+
     def __init__(self, *args, **kwargs):
         super(CodeFragmentBlock, self).__init__(*args, **kwargs)
 
