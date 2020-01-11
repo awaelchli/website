@@ -2,8 +2,8 @@
 
 {% image self.image min-256x1024 as img %}
 
-<div class="row">
-    <figure class="figure mx-auto">
+<div class="text-center">
+    <figure class="figure">
         <img src="{{ img.url }}" class="img-rounded" alt="{{ img.alt }}" style="width: 100%;">
         <span class="caption text-muted">
             {{ self.caption }}
