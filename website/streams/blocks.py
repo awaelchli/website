@@ -222,7 +222,7 @@ class TerminalMultiLineBlock(blocks.StructBlock):
 
 class TerminalBlock(blocks.StructBlock):
 
-    lines = StreamBlock(
+    content = StreamBlock(
         [
             ('line', TerminalLineBlock()),
             ('multiline', TerminalMultiLineBlock())
