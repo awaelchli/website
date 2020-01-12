@@ -186,3 +186,51 @@ class BlockQuoteBlock(blocks.StructBlock):
         template = 'streams/blockquote.html'
         icon = 'openquote'
         label = 'Blockquote'
+
+
+class TerminalLineBlock(blocks.StructBlock):
+
+    prompt = blocks.CharBlock(
+        default='>',
+        required=False,
+    )
+    line = blocks.CharBlock(
+        required=False,
+    )
+
+    class Meta:
+        template = 'streams/terminal_line_block.html'
+        icon = 'fa-terminal'
+        label = 'Single Line'
+
+
+class TerminalMultiLineBlock(blocks.StructBlock):
+
+    lines = blocks.TextBlock(
+        required=False,
+    )
+
+    def test(self):
+        print('here')
+        return str(self.lines).split('\n')
+
+    class Meta:
+        template = 'streams/terminal_multiline_block.html'
+        icon = 'fa-terminal'
+        label = 'Multi-Line'
+
+
+class TerminalBlock(blocks.StructBlock):
+
+    lines = StreamBlock(
+        [
+            ('line', TerminalLineBlock()),
+            ('multiline', TerminalMultiLineBlock())
+        ],
+        required=True,
+    )
+
+    class Meta:
+        template = 'streams/terminal_block.html'
+        icon = 'fa-terminal'
+        label = 'Terminal Display'

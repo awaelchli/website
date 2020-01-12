@@ -14,6 +14,7 @@ from wagtailautocomplete.edit_handlers import AutocompletePanel
 from core.models import BannerPage
 from settings.models import Blog as BlogSettings
 from streams import blocks
+from streams.blocks import TerminalBlock
 from subscription.notification import notify_subscribers
 
 
@@ -106,6 +107,7 @@ class BlogDetailPage(BannerPage):
             ('image', blocks.FigureBlock()),
             ('code', blocks.CodeFragmentBlock()),
             ('HTML', RawHTMLBlock(icon='fa-html5')),
+            ('Terminal', TerminalBlock()),
             ('latex', blocks.MathBlock()),
             ('blockquote', blocks.BlockQuoteBlock()),
             ('youtube', blocks.YouTubeBlock()),

@@ -8,12 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/post.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'wagtailcodeblock/css/prism.min.css' %}" >
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/prism-command-line.css' %}">
-{% endblock %}
-
-
-{% block extra_js %}
-    <script type="text/javascript" src="{% static 'wagtailcodeblock/js/prism.min.js' %}" ></script>
-    <script type="text/javascript" src="{% static 'blog/js/prism-command-line.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/termynal.css' %}">
 {% endblock %}
 
 
@@ -47,6 +42,37 @@
         </div>
     </article>
 
+{% endblock %}
+
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'wagtailcodeblock/js/prism.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'blog/js/prism-command-line.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'blog/js/termynal.js' %}"></script>
+
+    {% comment %}
+    <script>
+        let termynals = {};
+        <!--
+        let observer = new IntersectionObserver(function(entries) {
+            if(entries[0].isIntersecting === true)
+                termynals[entries[0].target.id].init();
+        }, { threshold: [0] });
+        -->
+
+        $(document).ready(function() {
+            $('[data-termynal]').each(
+                function (index, element) {
+                    element.id = "termynal-" + index;
+                    termynals[element.id] = new Termynal("#" + element.id);
+
+                    // observer.observe(document.querySelector("#" + element.id));
+
+                }
+            );
+        });
+    </script>
+    {% endcomment %}
 {% endblock %}
 
 
