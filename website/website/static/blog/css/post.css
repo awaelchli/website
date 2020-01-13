@@ -21,5 +21,6 @@ code[class*="language-"],
 pre[class*="language-"] {
     font-size: 16px !important;
     text-shadow: none !important;
+    background: #252a33 !important;
 }
 
