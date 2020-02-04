@@ -5,6 +5,10 @@
     font-family: 'Lora', 'Times New Roman', serif;
 }
 
+#blog-post-blocks a {
+    font-weight: bolder;
+}
+
 #blog-post-blocks p {
     text-align: justify;
 }
