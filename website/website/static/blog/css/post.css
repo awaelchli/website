@@ -29,3 +29,12 @@ pre[class*="language-"] {
     border-radius: 4px !important;
 }
 
+
+code {
+    /* inline code */
+    color: black;
+    background: #ece9e7;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    white-space: normal;
+}
