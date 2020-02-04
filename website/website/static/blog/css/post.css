@@ -3,6 +3,7 @@
 #blog-post-blocks ol {
     font-size: 20px;
     font-family: 'Lora', 'Times New Roman', serif;
+    margin: 24px 0;
 }
 
 #blog-post-blocks a {
@@ -27,6 +28,7 @@ pre[class*="language-"] {
     text-shadow: none !important;
     background: #252a33 !important;
     border-radius: 4px !important;
+    margin: 24px 0 !important;
 }
 
 
