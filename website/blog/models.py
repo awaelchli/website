@@ -212,6 +212,21 @@ class HackerCave(BlogListingPage):
     ]
 
 
+class ResearchBlog(BlogListingPage):
+    """ List all research project pages. """
+    class Meta:
+        verbose_name = 'Research Blog'
+
+    template = 'blog/listing_page.html'
+    max_count = 1
+    subpage_types = {
+        'blog.BlogDetailPage',
+    }
+    parent_page_type = [
+        'home.HomePage',
+    ]
+
+
 class MovieReview(BlogDetailPage):
     template = 'blog/post.html'
     subpage_types = []
