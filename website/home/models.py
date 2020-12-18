@@ -21,6 +21,7 @@ class HomePage(BannerPage):
         'blog.BlogListingPage',
         'blog.CreativeHub',
         'blog.HackerCave',
+        'blog.ResearchBlog',
         'contact.ContactPage',
         'flex.FlexPage',
         'subscription.SubscriptionPage'
