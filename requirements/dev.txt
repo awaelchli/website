@@ -1,3 +1,4 @@
 -r base.txt
 isort
+black
 django-debug-toolbar==3.2

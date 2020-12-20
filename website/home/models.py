@@ -3,10 +3,15 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel, PageChooserPanel
-from wagtail.core.fields import StreamField, RichTextField
-
-from wagtail.core.models import Page, Orderable
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    InlinePanel,
+    MultiFieldPanel,
+    PageChooserPanel,
+    StreamFieldPanel,
+)
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.models import Orderable, Page
 
 from blog.models import BlogListingPage
 from core.models import BannerPage
@@ -15,23 +20,23 @@ from streams import blocks
 
 
 class HomePage(BannerPage):
-    template = 'home/home_page.html'
+    template = "home/home_page.html"
     subpage_types = [
-        'blog.BlogListingPage',
-        'blog.CreativeHub',
-        'blog.HackerCave',
-        'blog.ResearchBlog',
-        'flex.FlexPage',
-        'subscription.SubscriptionPage'
+        "blog.BlogListingPage",
+        "blog.CreativeHub",
+        "blog.HackerCave",
+        "blog.ResearchBlog",
+        "flex.FlexPage",
+        "subscription.SubscriptionPage",
     ]
     parent_page_type = [
-        'wagtailcore.Page',
+        "wagtailcore.Page",
     ]
     max_count = 1
 
     content = StreamField(
         [
-            ('cards', blocks.CardBlock()),
+            ("cards", blocks.CardBlock()),
         ],
         blank=True,
     )
@@ -39,21 +44,21 @@ class HomePage(BannerPage):
     content_panels = BannerPage.content_panels + [
         MultiFieldPanel(
             [
-                InlinePanel('achievements', min_num=3, max_num=5),
+                InlinePanel("achievements", min_num=3, max_num=5),
             ],
-            heading='Achievements'
+            heading="Achievements",
         ),
-        StreamFieldPanel('content'),
+        StreamFieldPanel("content"),
         MultiFieldPanel(
             [
-                InlinePanel('countdowns', max_num=1),
+                InlinePanel("countdowns", max_num=1),
             ],
-            heading='Countdown',
+            heading="Countdown",
         ),
     ]
 
     class Meta:
-        verbose_name = 'Home Page'
+        verbose_name = "Home Page"
 
     @property
     def countdown(self):
@@ -62,8 +67,8 @@ class HomePage(BannerPage):
 
 class Countdown(Orderable):
     page = ParentalKey(
-        'home.HomePage',
-        related_name='countdowns',
+        "home.HomePage",
+        related_name="countdowns",
     )
     title = models.CharField(
         max_length=100,
@@ -78,24 +83,22 @@ class Countdown(Orderable):
         blank=True,
     )
 
-    reveal_text = RichTextField(
-        blank=True
-    )
+    reveal_text = RichTextField(blank=True)
 
     reveal_page = models.ForeignKey(
-        'wagtailcore.Page',
+        "wagtailcore.Page",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        related_name='+',
+        related_name="+",
     )
 
     panels = [
-        FieldPanel('title'),
-        FieldPanel('target'),
-        FieldPanel('teaser_text'),
-        FieldPanel('reveal_text'),
-        PageChooserPanel('reveal_page'),
+        FieldPanel("title"),
+        FieldPanel("target"),
+        FieldPanel("teaser_text"),
+        FieldPanel("reveal_text"),
+        PageChooserPanel("reveal_page"),
     ]
 
     @property
@@ -130,8 +133,8 @@ class Countdown(Orderable):
 
 class Statistics(Orderable):
     page = ParentalKey(
-        'home.HomePage',
-        related_name='achievements',
+        "home.HomePage",
+        related_name="achievements",
     )
     name = models.CharField(
         max_length=128,
@@ -142,6 +145,6 @@ class Statistics(Orderable):
     )
 
     panels = [
-        FieldPanel('name'),
-        FieldPanel('number'),
+        FieldPanel("name"),
+        FieldPanel("number"),
     ]

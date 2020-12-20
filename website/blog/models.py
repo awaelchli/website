@@ -1,8 +1,14 @@
 from abc import abstractmethod
 
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, TabbedInterface, ObjectList
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    MultiFieldPanel,
+    ObjectList,
+    StreamFieldPanel,
+    TabbedInterface,
+)
 from wagtail.core.blocks import RawHTMLBlock, StreamBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, Site
@@ -31,41 +37,43 @@ class BlogAuthor(models.Model):
     panels = [
         MultiFieldPanel(
             [
-                FieldPanel('first_name'),
-                FieldPanel('last_name'),
+                FieldPanel("first_name"),
+                FieldPanel("last_name"),
             ],
-            heading='Details'
+            heading="Details",
         )
     ]
 
     class Meta:
-        verbose_name = 'Blog Author'
-        verbose_name_plural = 'Blog Authors'
+        verbose_name = "Blog Author"
+        verbose_name_plural = "Blog Authors"
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f"{self.first_name} {self.last_name}"
 
 
 class BlogListingPage(BannerPage):
     """ Lists all blog pages. """
 
-    template = 'blog/listing_page.html'
+    template = "blog/listing_page.html"
     max_count = 1
     subpage_types = [
-        'blog.BlogDetailPage',
+        "blog.BlogDetailPage",
     ]
     parent_page_type = [
-        'home.HomePage',
+        "home.HomePage",
     ]
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         # all_posts = BlogDetailPage.objects.live().public().order_by('-first_published_at')
-        all_posts = self.get_children().live().public().order_by('-first_published_at')
+        all_posts = self.get_children().live().public().order_by("-first_published_at")
         all_posts = [p.specific for p in all_posts]
-        posts_per_page = BlogSettings.for_site(Site.find_for_request(request)).num_posts_per_page
+        posts_per_page = BlogSettings.for_site(
+            Site.find_for_request(request)
+        ).num_posts_per_page
         paginator = Paginator(all_posts, posts_per_page)
-        page_nr = request.GET.get('page')
+        page_nr = request.GET.get("page")
         try:
             posts = paginator.page(page_nr)
         except PageNotAnInteger:
@@ -73,15 +81,15 @@ class BlogListingPage(BannerPage):
         except EmptyPage:
             posts = paginator.page(paginator.num_pages)
 
-        context['posts'] = posts
+        context["posts"] = posts
         return context
 
 
 class BlogDetailPage(BannerPage):
-    template = 'blog/post.html'
+    template = "blog/post.html"
     subpage_types = []
     parent_page_type = [
-        'blog.BlogListingPage',
+        "blog.BlogListingPage",
     ]
 
     author = models.ForeignKey(
@@ -93,55 +101,50 @@ class BlogDetailPage(BannerPage):
 
     notify_newsletter_subscribers = models.BooleanField(
         default=False,
-        verbose_name='Newsletter',
+        verbose_name="Newsletter",
     )
 
     notify_telegram_subscribers = models.BooleanField(
         default=False,
-        verbose_name='Telegram',
+        verbose_name="Telegram",
     )
 
     content = StreamField(
         [
-            ('richtext', blocks.RichTextBlock()),
-            ('image', blocks.FigureBlock()),
-            ('code', blocks.CodeFragmentBlock()),
-            ('HTML', RawHTMLBlock(icon='fa-html5')),
-            ('Terminal', TerminalBlock()),
-            ('latex', blocks.MathBlock()),
-            ('blockquote', blocks.BlockQuoteBlock()),
-            ('youtube', blocks.YouTubeBlock()),
+            ("richtext", blocks.RichTextBlock()),
+            ("image", blocks.FigureBlock()),
+            ("code", blocks.CodeFragmentBlock()),
+            ("HTML", RawHTMLBlock(icon="fa-html5")),
+            ("Terminal", TerminalBlock()),
+            ("latex", blocks.MathBlock()),
+            ("blockquote", blocks.BlockQuoteBlock()),
+            ("youtube", blocks.YouTubeBlock()),
         ],
         blank=True,
     )
 
     content_panels = BannerPage.content_panels + [
-        SnippetChooserPanel('author'),
-        StreamFieldPanel('content'),
+        SnippetChooserPanel("author"),
+        StreamFieldPanel("content"),
     ]
 
     edit_handler = TabbedInterface(
         [
+            ObjectList(content_panels, heading="Content"),
+            ObjectList(BannerPage.promote_panels, heading="Promote"),
             ObjectList(
-                content_panels,
-                heading='Content'
-            ),
-            ObjectList(
-                BannerPage.promote_panels,
-                heading='Promote'
-            ),
-            ObjectList(
-                BannerPage.settings_panels + [
+                BannerPage.settings_panels
+                + [
                     MultiFieldPanel(
                         [
-                            FieldPanel('notify_newsletter_subscribers'),
-                            FieldPanel('notify_telegram_subscribers'),
+                            FieldPanel("notify_newsletter_subscribers"),
+                            FieldPanel("notify_telegram_subscribers"),
                         ],
-                        heading='Notification Channels',
-                        help_text='Choose which channels to notifiy about this blog post.'
+                        heading="Notification Channels",
+                        help_text="Choose which channels to notifiy about this blog post.",
                     )
                 ],
-                heading='Settings'
+                heading="Settings",
             ),
         ]
     )
@@ -158,24 +161,18 @@ class CreationBase(BlogDetailPage):
 
 
 class VideoProjectPage(CreationBase):
-    template = 'blog/creative_hub/post.html'
+    template = "blog/creative_hub/post.html"
     subpage_types = []
     parent_page_type = [
-        'blog.CreativeHub',
+        "blog.CreativeHub",
     ]
 
     video = StreamField(
-        StreamBlock(
-            [
-                ('youtube', blocks.YouTubeBlock())
-            ],
-            min_num=1,
-            max_num=1
-        )
+        StreamBlock([("youtube", blocks.YouTubeBlock())], min_num=1, max_num=1)
     )
 
     content_panels = CreationBase.content_panels + [
-        StreamFieldPanel('video'),
+        StreamFieldPanel("video"),
     ]
 
     def creation(self):
@@ -184,67 +181,70 @@ class VideoProjectPage(CreationBase):
 
 class CreativeHub(BlogListingPage):
     """ Lists all creative project pages. """
-    class Meta:
-        verbose_name = 'Creative Hub'
 
-    template = 'blog/creative_hub/listing_page.html'
+    class Meta:
+        verbose_name = "Creative Hub"
+
+    template = "blog/creative_hub/listing_page.html"
     max_count = 1
     subpage_types = [
-        'blog.VideoProjectPage',
+        "blog.VideoProjectPage",
     ]
     parent_page_type = [
-        'home.HomePage',
+        "home.HomePage",
     ]
 
 
 class HackerCave(BlogListingPage):
     """ List all hacker project pages. """
-    class Meta:
-        verbose_name = 'Hacker Cave'
 
-    template = 'blog/hacker_cave/listing_page.html'
+    class Meta:
+        verbose_name = "Hacker Cave"
+
+    template = "blog/hacker_cave/listing_page.html"
     max_count = 1
     subpage_types = {
-        'blog.BlogDetailPage',
+        "blog.BlogDetailPage",
     }
     parent_page_type = [
-        'home.HomePage',
+        "home.HomePage",
     ]
 
 
 class ResearchBlog(BlogListingPage):
     """ List all research project pages. """
-    class Meta:
-        verbose_name = 'Research Blog'
 
-    template = 'blog/listing_page.html'
+    class Meta:
+        verbose_name = "Research Blog"
+
+    template = "blog/listing_page.html"
     max_count = 1
     subpage_types = {
-        'blog.BlogDetailPage',
+        "blog.BlogDetailPage",
     }
     parent_page_type = [
-        'home.HomePage',
+        "home.HomePage",
     ]
 
 
 class MovieReview(BlogDetailPage):
-    template = 'blog/post.html'
+    template = "blog/post.html"
     subpage_types = []
     parent_page_type = [
-        'blog.BlogListingPage',
+        "blog.BlogListingPage",
     ]
 
     movie = models.ForeignKey(
-        'movies.Movie',
+        "movies.Movie",
         blank=False,
         null=True,
         on_delete=models.SET_NULL,
     )
 
     content_panels = Page.content_panels + [
-        SnippetChooserPanel('author'),
-        AutocompletePanel('movie'),
-        StreamFieldPanel('content'),
+        SnippetChooserPanel("author"),
+        AutocompletePanel("movie"),
+        StreamFieldPanel("content"),
     ]
 
 

@@ -9,15 +9,15 @@ class NewsletterSubscriptionForm(forms.ModelForm):
     email = forms.EmailField(
         widget=forms.TextInput(
             attrs={
-                'placeholder': 'Enter your email',
-                'class': 'form-control form-control-lg'
+                "placeholder": "Enter your email",
+                "class": "form-control form-control-lg",
             }
         )
     )
 
     class Meta:
         model = NewsletterSubscription
-        fields = ['email']
+        fields = ["email"]
 
     def __init__(self, *args, **kwargs):
         super(NewsletterSubscriptionForm, self).__init__(*args, **kwargs)

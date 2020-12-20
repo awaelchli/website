@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('home', '0005_countdown'),
+        ("home", "0005_countdown"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='countdown',
-            name='stop_at_zero',
+            model_name="countdown",
+            name="stop_at_zero",
         ),
     ]

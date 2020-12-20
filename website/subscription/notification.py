@@ -1,8 +1,8 @@
 from smtplib import SMTPException
 
 import telegram
-from django.core import mail
 from django.conf import settings
+from django.core import mail
 from django.template.loader import get_template
 from telegram import ParseMode
 
@@ -38,15 +38,17 @@ def notify_newsletter_subscribers(instance):
     subscription_page = subscription_settings.subscription_page
     messages = []
     for recipient in recipients:
-        plaintext = get_template('subscription/message/email.txt')
-        html = get_template('subscription/message/email.html')
+        plaintext = get_template("subscription/message/email.txt")
+        html = get_template("subscription/message/email.html")
         if subscription_page:
-            unsubscribe_url = subscription_page.specific.get_unsubscribe_url_for(recipient)
+            unsubscribe_url = subscription_page.specific.get_unsubscribe_url_for(
+                recipient
+            )
         else:
             unsubscribe_url = None
         context = {
-            'post': instance,
-            'unsubscribe_url': unsubscribe_url,
+            "post": instance,
+            "unsubscribe_url": unsubscribe_url,
         }
         text_content = plaintext.render(context)
         html_content = html.render(context)
@@ -73,16 +75,8 @@ def notify_telegram_channel(instance):
     if not (bot_token and channel_id):
         return
 
-    message = get_template('subscription/message/telegram.html')
-    message = message.render(
-        context={
-            'post': instance
-        }
-    )
+    message = get_template("subscription/message/telegram.html")
+    message = message.render(context={"post": instance})
 
     bot = telegram.Bot(token=bot_token)
-    bot.send_message(
-        chat_id=channel_id,
-        text=message,
-        parse_mode=ParseMode.HTML
-    )
+    bot.send_message(chat_id=channel_id, text=message, parse_mode=ParseMode.HTML)

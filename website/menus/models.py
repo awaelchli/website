@@ -2,7 +2,12 @@ from django.db import models
 from django_extensions.db.fields import AutoSlugField
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, InlinePanel, PageChooserPanel
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    InlinePanel,
+    MultiFieldPanel,
+    PageChooserPanel,
+)
 from wagtail.core.models import Orderable
 from wagtail.snippets.models import register_snippet
 
@@ -14,19 +19,19 @@ class Menu(ClusterableModel):
         max_length=128,
     )
     slug = AutoSlugField(
-        populate_from='title',
+        populate_from="title",
         editable=True,
     )
 
     panels = [
         MultiFieldPanel(
             [
-                FieldPanel('title'),
-                FieldPanel('slug'),
+                FieldPanel("title"),
+                FieldPanel("slug"),
             ],
-            heading='Menu'
+            heading="Menu",
         ),
-        InlinePanel('menu_items', label='Menu Item')
+        InlinePanel("menu_items", label="Menu Item"),
     ]
 
     def __str__(self):
@@ -40,10 +45,10 @@ class MenuItem(Orderable):
         blank=True,
     )
     link_page = models.ForeignKey(
-        'wagtailcore.Page',
+        "wagtailcore.Page",
         blank=True,
         null=True,
-        related_name='+',
+        related_name="+",
         on_delete=models.SET_NULL,
     )
     open_in_new_tab = models.BooleanField(
@@ -52,13 +57,13 @@ class MenuItem(Orderable):
     )
     page = ParentalKey(
         Menu,
-        related_name='menu_items',
+        related_name="menu_items",
     )
 
     panels = [
-        FieldPanel('link_title'),
-        PageChooserPanel('link_page'),
-        FieldPanel('open_in_new_tab'),
+        FieldPanel("link_title"),
+        PageChooserPanel("link_page"),
+        FieldPanel("open_in_new_tab"),
     ]
 
     @property
@@ -66,7 +71,7 @@ class MenuItem(Orderable):
         if self.link_page:
             return self.link_page.url
         else:
-            return '#'
+            return "#"
 
     @property
     def title(self):
@@ -75,4 +80,4 @@ class MenuItem(Orderable):
         elif self.link_page:
             return self.link_page.title
         else:
-            return 'Missing Title'
+            return "Missing Title"

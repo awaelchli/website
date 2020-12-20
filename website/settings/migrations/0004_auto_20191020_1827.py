@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0003_blog'),
+        ("settings", "0003_blog"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='blog',
-            name='num_posts_per_page',
-            field=models.PositiveIntegerField(default=5, help_text='The number of blog posts that appear in one page. ', verbose_name='Posts per page'),
+            model_name="blog",
+            name="num_posts_per_page",
+            field=models.PositiveIntegerField(
+                default=5,
+                help_text="The number of blog posts that appear in one page. ",
+                verbose_name="Posts per page",
+            ),
         ),
     ]
