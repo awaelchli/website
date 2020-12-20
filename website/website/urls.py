@@ -1,9 +1,9 @@
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import include
 from django.contrib import admin
-from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.urls import path
 from django.views.generic import RedirectView, TemplateView
+from django.templatetags.static import static
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
