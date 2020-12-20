@@ -5,7 +5,7 @@ from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, TabbedInterface, ObjectList
 from wagtail.core.blocks import RawHTMLBlock, StreamBlock
 from wagtail.core.fields import StreamField
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Site
 from wagtail.core.signals import page_published
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
@@ -63,7 +63,7 @@ class BlogListingPage(BannerPage):
         # all_posts = BlogDetailPage.objects.live().public().order_by('-first_published_at')
         all_posts = self.get_children().live().public().order_by('-first_published_at')
         all_posts = [p.specific for p in all_posts]
-        posts_per_page = BlogSettings.for_site(request.site).num_posts_per_page
+        posts_per_page = BlogSettings.for_site(Site.find_for_request(request)).num_posts_per_page
         paginator = Paginator(all_posts, posts_per_page)
         page_nr = request.GET.get('page')
         try:
