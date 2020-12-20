@@ -1,9 +1,5 @@
 from django.db import models
-from wagtail.admin.edit_handlers import (
-    FieldPanel,
-    FieldRowPanel,
-    MultiFieldPanel
-)
+from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 
@@ -29,34 +25,34 @@ class Movie(models.Model):
         blank=False,
     )
     poster = models.ForeignKey(
-        'wagtailimages.Image',
+        "wagtailimages.Image",
         blank=True,
         null=True,
-        related_name='+',
+        related_name="+",
         on_delete=models.SET_NULL,
-        verbose_name='Poster',
+        verbose_name="Poster",
     )
     trailer = models.URLField(
         blank=True,
     )
 
     panels = [
-        FieldPanel('title', classname='title'),
-        ImageChooserPanel('poster'),
+        FieldPanel("title", classname="title"),
+        ImageChooserPanel("poster"),
         MultiFieldPanel(
             [
-                FieldPanel('director'),
-                FieldPanel('release_date'),
-                FieldPanel('duration'),
-                FieldPanel('genre'),
+                FieldPanel("director"),
+                FieldPanel("release_date"),
+                FieldPanel("duration"),
+                FieldPanel("genre"),
             ],
-            heading='Details',
+            heading="Details",
         ),
         MultiFieldPanel(
             [
-                FieldPanel('trailer'),
+                FieldPanel("trailer"),
             ],
-            heading='External Links',
+            heading="External Links",
         ),
     ]
 

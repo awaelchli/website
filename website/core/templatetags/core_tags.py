@@ -7,4 +7,4 @@ register = template.Library()
 @register.filter
 @stringfilter
 def split_lines(lines):
-    return lines.split('\n')
+    return lines.split("\n")

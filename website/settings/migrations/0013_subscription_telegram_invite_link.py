@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0012_auto_20191109_2350'),
+        ("settings", "0012_auto_20191109_2350"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='subscription',
-            name='telegram_invite_link',
-            field=models.URLField(blank=True, verbose_name='Invite Link'),
+            model_name="subscription",
+            name="telegram_invite_link",
+            field=models.URLField(blank=True, verbose_name="Invite Link"),
         ),
     ]

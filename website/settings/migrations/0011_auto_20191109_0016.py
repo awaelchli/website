@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0010_subscription'),
+        ("settings", "0010_subscription"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='subscription',
-            options={'verbose_name': 'Subscription'},
+            name="subscription",
+            options={"verbose_name": "Subscription"},
         ),
     ]

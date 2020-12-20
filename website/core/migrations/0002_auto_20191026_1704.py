@@ -7,23 +7,30 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0001_initial'),
+        ("core", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='bannerpage',
-            name='banner_image',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image', verbose_name='Image'),
+            model_name="bannerpage",
+            name="banner_image",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="wagtailimages.Image",
+                verbose_name="Image",
+            ),
         ),
         migrations.AlterField(
-            model_name='bannerpage',
-            name='banner_subtitle',
-            field=models.CharField(blank=True, max_length=128, verbose_name='Subtitle'),
+            model_name="bannerpage",
+            name="banner_subtitle",
+            field=models.CharField(blank=True, max_length=128, verbose_name="Subtitle"),
         ),
         migrations.AlterField(
-            model_name='bannerpage',
-            name='banner_title',
-            field=models.CharField(blank=True, max_length=128, verbose_name='Title'),
+            model_name="bannerpage",
+            name="banner_title",
+            field=models.CharField(blank=True, max_length=128, verbose_name="Title"),
         ),
     ]

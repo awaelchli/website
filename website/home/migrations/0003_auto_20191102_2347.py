@@ -9,13 +9,68 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('home', '0002_homepage_content'),
+        ("home", "0002_homepage_content"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='homepage',
-            name='content',
-            field=wagtail.core.fields.StreamField([('cards', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(required=True)), ('subtitle', wagtail.core.blocks.CharBlock(required=False)), ('cards', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('title', wagtail.core.blocks.CharBlock(required=True)), ('text', wagtail.core.blocks.TextBlock(required=True)), ('button_page', wagtail.core.blocks.PageChooserBlock(required=False)), ('button_url', wagtail.core.blocks.URLBlock(required=False))])))]))], blank=True),
+            model_name="homepage",
+            name="content",
+            field=wagtail.core.fields.StreamField(
+                [
+                    (
+                        "cards",
+                        wagtail.core.blocks.StructBlock(
+                            [
+                                ("title", wagtail.core.blocks.CharBlock(required=True)),
+                                (
+                                    "subtitle",
+                                    wagtail.core.blocks.CharBlock(required=False),
+                                ),
+                                (
+                                    "cards",
+                                    wagtail.core.blocks.ListBlock(
+                                        wagtail.core.blocks.StructBlock(
+                                            [
+                                                (
+                                                    "image",
+                                                    wagtail.images.blocks.ImageChooserBlock(
+                                                        required=True
+                                                    ),
+                                                ),
+                                                (
+                                                    "title",
+                                                    wagtail.core.blocks.CharBlock(
+                                                        required=True
+                                                    ),
+                                                ),
+                                                (
+                                                    "text",
+                                                    wagtail.core.blocks.TextBlock(
+                                                        required=True
+                                                    ),
+                                                ),
+                                                (
+                                                    "button_page",
+                                                    wagtail.core.blocks.PageChooserBlock(
+                                                        required=False
+                                                    ),
+                                                ),
+                                                (
+                                                    "button_url",
+                                                    wagtail.core.blocks.URLBlock(
+                                                        required=False
+                                                    ),
+                                                ),
+                                            ]
+                                        )
+                                    ),
+                                ),
+                            ]
+                        ),
+                    )
+                ],
+                blank=True,
+            ),
         ),
     ]

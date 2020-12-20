@@ -14,20 +14,110 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('core', '0002_auto_20191026_1704'),
+        ("core", "0002_auto_20191026_1704"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='FlexPage',
+            name="FlexPage",
             fields=[
-                ('bannerpage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='core.BannerPage')),
-                ('content', wagtail.core.fields.StreamField([('title_and_text', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(required=True)), ('text', wagtail.core.blocks.TextBlock(required=True))])), ('rich_text', streams.blocks.RichTextBlock()), ('simple_rich_text', streams.blocks.SimpleRichTextBlock()), ('cards', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(required=True)), ('cards', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('title', wagtail.core.blocks.CharBlock(required=True)), ('text', wagtail.core.blocks.TextBlock(required=True)), ('button_page', wagtail.core.blocks.PageChooserBlock(required=False)), ('button_url', wagtail.core.blocks.URLBlock(required=False))])))]))], blank=True)),
+                (
+                    "bannerpage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="core.BannerPage",
+                    ),
+                ),
+                (
+                    "content",
+                    wagtail.core.fields.StreamField(
+                        [
+                            (
+                                "title_and_text",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "title",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "text",
+                                            wagtail.core.blocks.TextBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            ("rich_text", streams.blocks.RichTextBlock()),
+                            ("simple_rich_text", streams.blocks.SimpleRichTextBlock()),
+                            (
+                                "cards",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "title",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "cards",
+                                            wagtail.core.blocks.ListBlock(
+                                                wagtail.core.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "image",
+                                                            wagtail.images.blocks.ImageChooserBlock(
+                                                                required=True
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "title",
+                                                            wagtail.core.blocks.CharBlock(
+                                                                required=True
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "text",
+                                                            wagtail.core.blocks.TextBlock(
+                                                                required=True
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "button_page",
+                                                            wagtail.core.blocks.PageChooserBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "button_url",
+                                                            wagtail.core.blocks.URLBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                    ]
+                                                )
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                        ],
+                        blank=True,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Flexible Page',
-                'verbose_name_plural': 'Flexible Pages',
+                "verbose_name": "Flexible Page",
+                "verbose_name_plural": "Flexible Pages",
             },
-            bases=('core.bannerpage',),
+            bases=("core.bannerpage",),
         ),
     ]

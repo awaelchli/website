@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('movies', '0009_auto_20191107_2333'),
+        ("movies", "0009_auto_20191107_2333"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='movie',
-            name='release_date',
+            model_name="movie",
+            name="release_date",
             field=models.DateField(default=django.utils.timezone.now),
             preserve_default=False,
         ),

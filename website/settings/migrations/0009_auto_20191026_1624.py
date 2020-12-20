@@ -7,13 +7,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0008_auto_20191024_2344'),
+        ("settings", "0008_auto_20191024_2344"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='googleanalytics',
-            name='tracking_id',
-            field=models.CharField(blank=True, max_length=14, validators=[django.core.validators.RegexValidator(message='Enter a valid Google Analytics Tracking ID.', regex='^[uU][aA]-\\d{4,9}-\\d{1,4}$')], verbose_name='Tracking ID'),
+            model_name="googleanalytics",
+            name="tracking_id",
+            field=models.CharField(
+                blank=True,
+                max_length=14,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        message="Enter a valid Google Analytics Tracking ID.",
+                        regex="^[uU][aA]-\\d{4,9}-\\d{1,4}$",
+                    )
+                ],
+                verbose_name="Tracking ID",
+            ),
         ),
     ]

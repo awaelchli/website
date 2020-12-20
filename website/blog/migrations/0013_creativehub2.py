@@ -7,18 +7,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0012_auto_20191230_2249'),
+        ("blog", "0012_auto_20191230_2249"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CreativeHub2',
+            name="CreativeHub2",
             fields=[
-                ('bloglistingpage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='blog.BlogListingPage')),
+                (
+                    "bloglistingpage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="blog.BlogListingPage",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Creative Hub 2',
+                "verbose_name": "Creative Hub 2",
             },
-            bases=('blog.bloglistingpage',),
+            bases=("blog.bloglistingpage",),
         ),
     ]

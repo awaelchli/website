@@ -7,18 +7,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0017_auto_20200103_0003'),
+        ("blog", "0017_auto_20200103_0003"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='HackerCave',
+            name="HackerCave",
             fields=[
-                ('bloglistingpage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='blog.BlogListingPage')),
+                (
+                    "bloglistingpage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="blog.BlogListingPage",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Hacker Cave',
+                "verbose_name": "Hacker Cave",
             },
-            bases=('blog.bloglistingpage',),
+            bases=("blog.bloglistingpage",),
         ),
     ]

@@ -8,29 +8,27 @@ from streams import blocks
 
 
 class FlexPage(BannerPage):
-    template = 'flex/flex_page.html'
+    template = "flex/flex_page.html"
     subpage_types = [
-        'flex.FlexPage',
+        "flex.FlexPage",
     ]
     parent_page_type = [
-        'home.HomePage',
-        'flex.FlexPage',
+        "home.HomePage",
+        "flex.FlexPage",
     ]
 
     content = StreamField(
         [
-            ('title_and_text', blocks.TitleAndTextBlock()),
-            ('rich_text', blocks.RichTextBlock()),
-            ('simple_rich_text', blocks.SimpleRichTextBlock()),
-            ('cards', blocks.CardBlock()),
+            ("title_and_text", blocks.TitleAndTextBlock()),
+            ("rich_text", blocks.RichTextBlock()),
+            ("simple_rich_text", blocks.SimpleRichTextBlock()),
+            ("cards", blocks.CardBlock()),
         ],
         blank=True,
     )
 
-    content_panels = BannerPage.content_panels + [
-        StreamFieldPanel('content')
-    ]
+    content_panels = BannerPage.content_panels + [StreamFieldPanel("content")]
 
     class Meta:
-        verbose_name = 'Flexible Page'
-        verbose_name_plural = 'Flexible Pages'
+        verbose_name = "Flexible Page"
+        verbose_name_plural = "Flexible Pages"

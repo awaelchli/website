@@ -7,14 +7,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '__first__'),
-        ('movies', '0001_initial'),
+        ("wagtailimages", "__first__"),
+        ("movies", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='movie',
-            name='poster',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image', verbose_name='Poster'),
+            model_name="movie",
+            name="poster",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="wagtailimages.Image",
+                verbose_name="Poster",
+            ),
         ),
     ]

@@ -7,23 +7,29 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('subscription', '0008_auto_20191109_2335'),
+        ("subscription", "0008_auto_20191109_2335"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='subscriptionpage',
-            name='telegram_intro_text',
-            field=wagtail.core.fields.RichTextField(blank=True, verbose_name='Intro Text'),
+            model_name="subscriptionpage",
+            name="telegram_intro_text",
+            field=wagtail.core.fields.RichTextField(
+                blank=True, verbose_name="Intro Text"
+            ),
         ),
         migrations.AlterField(
-            model_name='subscriptionpage',
-            name='email_intro_text',
-            field=wagtail.core.fields.RichTextField(blank=True, verbose_name='Intro Text'),
+            model_name="subscriptionpage",
+            name="email_intro_text",
+            field=wagtail.core.fields.RichTextField(
+                blank=True, verbose_name="Intro Text"
+            ),
         ),
         migrations.AlterField(
-            model_name='subscriptionpage',
-            name='email_success_text',
-            field=wagtail.core.fields.RichTextField(blank=True, verbose_name='Success Text'),
+            model_name="subscriptionpage",
+            name="email_success_text",
+            field=wagtail.core.fields.RichTextField(
+                blank=True, verbose_name="Success Text"
+            ),
         ),
     ]

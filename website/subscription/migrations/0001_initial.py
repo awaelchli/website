@@ -9,28 +9,45 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='NewsletterSubscription',
+            name="NewsletterSubscription",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=254)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
             ],
         ),
         migrations.CreateModel(
-            name='SubscriptionPage',
+            name="SubscriptionPage",
             fields=[
-                ('bannerpage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='core.BannerPage')),
-                ('intro_text', wagtail.core.fields.RichTextField(blank=True)),
-                ('success_text', wagtail.core.fields.RichTextField(blank=True)),
+                (
+                    "bannerpage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="core.BannerPage",
+                    ),
+                ),
+                ("intro_text", wagtail.core.fields.RichTextField(blank=True)),
+                ("success_text", wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('core.bannerpage',),
+            bases=("core.bannerpage",),
         ),
     ]

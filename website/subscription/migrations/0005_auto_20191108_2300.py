@@ -8,13 +8,17 @@ import subscription.utils
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('subscription', '0004_newslettersubscription_uuid'),
+        ("subscription", "0004_newslettersubscription_uuid"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='newslettersubscription',
-            name='uuid',
-            field=models.CharField(blank=True, default=subscription.utils.generate_subscriber_uuid, max_length=128),
+            model_name="newslettersubscription",
+            name="uuid",
+            field=models.CharField(
+                blank=True,
+                default=subscription.utils.generate_subscriber_uuid,
+                max_length=128,
+            ),
         ),
     ]

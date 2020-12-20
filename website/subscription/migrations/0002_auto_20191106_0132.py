@@ -6,17 +6,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailforms', '0003_capitalizeverbose'),
-        ('wagtailredirects', '0006_redirect_increase_max_length'),
-        ('wagtailcore', '0041_group_collection_permissions_verbose_name_plural'),
-        ('subscription', '0001_initial'),
+        ("wagtailforms", "0003_capitalizeverbose"),
+        ("wagtailredirects", "0006_redirect_increase_max_length"),
+        ("wagtailcore", "0041_group_collection_permissions_verbose_name_plural"),
+        ("subscription", "0001_initial"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='NewsletterSubscription',
+            name="NewsletterSubscription",
         ),
         migrations.DeleteModel(
-            name='SubscriptionPage',
+            name="SubscriptionPage",
         ),
     ]

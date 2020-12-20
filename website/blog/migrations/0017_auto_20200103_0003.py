@@ -6,22 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0016_auto_20200102_2214'),
+        ("blog", "0016_auto_20200102_2214"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='blogdetailpage',
-            name='notify_email_subscribers',
+            model_name="blogdetailpage",
+            name="notify_email_subscribers",
         ),
         migrations.AddField(
-            model_name='blogdetailpage',
-            name='notify_newsletter_subscribers',
-            field=models.BooleanField(default=False, verbose_name='Newsletter'),
+            model_name="blogdetailpage",
+            name="notify_newsletter_subscribers",
+            field=models.BooleanField(default=False, verbose_name="Newsletter"),
         ),
         migrations.AlterField(
-            model_name='blogdetailpage',
-            name='notify_telegram_subscribers',
-            field=models.BooleanField(default=False, verbose_name='Telegram'),
+            model_name="blogdetailpage",
+            name="notify_telegram_subscribers",
+            field=models.BooleanField(default=False, verbose_name="Telegram"),
         ),
     ]

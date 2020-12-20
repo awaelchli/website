@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('movies', '0003_auto_20191104_0128'),
+        ("movies", "0003_auto_20191104_0128"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='movie',
-            name='duration',
+            model_name="movie",
+            name="duration",
             field=models.DurationField(blank=True, default=datetime.timedelta(0)),
             preserve_default=False,
         ),

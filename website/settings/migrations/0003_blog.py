@@ -7,20 +7,35 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0041_group_collection_permissions_verbose_name_plural'),
-        ('settings', '0002_auto_20191020_0121'),
+        ("wagtailcore", "0041_group_collection_permissions_verbose_name_plural"),
+        ("settings", "0002_auto_20191020_0121"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Blog',
+            name="Blog",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('num_posts_per_page', models.PositiveIntegerField(default=5)),
-                ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.Site')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("num_posts_per_page", models.PositiveIntegerField(default=5)),
+                (
+                    "site",
+                    models.OneToOneField(
+                        editable=False,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="wagtailcore.Site",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Blog',
+                "verbose_name": "Blog",
             },
         ),
     ]

@@ -6,17 +6,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0041_group_collection_permissions_verbose_name_plural'),
-        ('settings', '0001_initial'),
+        ("wagtailcore", "0041_group_collection_permissions_verbose_name_plural"),
+        ("settings", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='SocialMediaSettings',
-            new_name='SocialMedia',
+            old_name="SocialMediaSettings",
+            new_name="SocialMedia",
         ),
         migrations.AlterModelOptions(
-            name='socialmedia',
-            options={'verbose_name': 'Social Media'},
+            name="socialmedia",
+            options={"verbose_name": "Social Media"},
         ),
     ]

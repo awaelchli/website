@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('subscription', '0003_newslettersubscription_subscriptionpage'),
+        ("subscription", "0003_newslettersubscription_subscriptionpage"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='newslettersubscription',
-            name='uuid',
+            model_name="newslettersubscription",
+            name="uuid",
             field=models.CharField(blank=True, default=uuid.uuid4, max_length=128),
         ),
     ]

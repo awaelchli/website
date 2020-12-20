@@ -15,44 +15,219 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('wagtailimages', '0001_squashed_0021'),
-        ('core', '0002_auto_20191026_1704'),
+        ("wagtailimages", "0001_squashed_0021"),
+        ("core", "0002_auto_20191026_1704"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='BlogAuthor',
+            name="BlogAuthor",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=128)),
-                ('last_name', models.CharField(max_length=128)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=128)),
+                ("last_name", models.CharField(max_length=128)),
             ],
             options={
-                'verbose_name': 'Blog Author',
-                'verbose_name_plural': 'Blog Authors',
+                "verbose_name": "Blog Author",
+                "verbose_name_plural": "Blog Authors",
             },
         ),
         migrations.CreateModel(
-            name='BlogListingPage',
+            name="BlogListingPage",
             fields=[
-                ('bannerpage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='core.BannerPage')),
+                (
+                    "bannerpage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="core.BannerPage",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('core.bannerpage',),
+            bases=("core.bannerpage",),
         ),
         migrations.CreateModel(
-            name='BlogDetailPage',
+            name="BlogDetailPage",
             fields=[
-                ('bannerpage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='core.BannerPage')),
-                ('content', wagtail.core.fields.StreamField([('richtext', streams.blocks.RichTextBlock()), ('image', wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('caption', wagtail.core.blocks.TextBlock(required=False))])), ('code', wagtail.core.blocks.StreamBlock([('code', wagtail.core.blocks.StructBlock([('language', wagtail.core.blocks.ChoiceBlock(choices=[('bash', 'Bash + Shell'), ('batch', 'Batch'), ('c', 'C'), ('cpp', 'C++'), ('css', 'CSS'), ('django', 'Django/Jinja2'), ('git', 'Git'), ('java', 'Java'), ('javascript', 'JavaScript'), ('json', 'JSON'), ('latex', 'LaTeX'), ('makefile', 'Makefile'), ('markdown', 'Markdown'), ('matlab', 'MATLAB'), ('python', 'Python'), ('regex', 'Regex'), ('sql', 'SQL'), ('yaml', 'YAML')], help_text='Coding language', identifier='language', label='Language')), ('code', wagtail.core.blocks.TextBlock(identifier='code', label='Code'))], label='Code')), ('caption', wagtail.core.blocks.TextBlock(required=False))])), ('HTML', wagtail.core.blocks.RawHTMLBlock()), ('latex', wagtail.core.blocks.StructBlock([('equation', wagtail.core.blocks.TextBlock(required=True)), ('size', wagtail.core.blocks.ChoiceBlock(choices=[(100, '100%'), (150, '150%'), (200, '200%'), (250, '250%')])), ('caption', wagtail.core.blocks.TextBlock(required=False))])), ('blockquote', wagtail.core.blocks.BlockQuoteBlock()), ('embed', wagtail.embeds.blocks.EmbedBlock())], blank=True)),
-                ('author', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='blog.BlogAuthor')),
-                ('image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
+                (
+                    "bannerpage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="core.BannerPage",
+                    ),
+                ),
+                (
+                    "content",
+                    wagtail.core.fields.StreamField(
+                        [
+                            ("richtext", streams.blocks.RichTextBlock()),
+                            (
+                                "image",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "caption",
+                                            wagtail.core.blocks.TextBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            (
+                                "code",
+                                wagtail.core.blocks.StreamBlock(
+                                    [
+                                        (
+                                            "code",
+                                            wagtail.core.blocks.StructBlock(
+                                                [
+                                                    (
+                                                        "language",
+                                                        wagtail.core.blocks.ChoiceBlock(
+                                                            choices=[
+                                                                (
+                                                                    "bash",
+                                                                    "Bash + Shell",
+                                                                ),
+                                                                ("batch", "Batch"),
+                                                                ("c", "C"),
+                                                                ("cpp", "C++"),
+                                                                ("css", "CSS"),
+                                                                (
+                                                                    "django",
+                                                                    "Django/Jinja2",
+                                                                ),
+                                                                ("git", "Git"),
+                                                                ("java", "Java"),
+                                                                (
+                                                                    "javascript",
+                                                                    "JavaScript",
+                                                                ),
+                                                                ("json", "JSON"),
+                                                                ("latex", "LaTeX"),
+                                                                (
+                                                                    "makefile",
+                                                                    "Makefile",
+                                                                ),
+                                                                (
+                                                                    "markdown",
+                                                                    "Markdown",
+                                                                ),
+                                                                ("matlab", "MATLAB"),
+                                                                ("python", "Python"),
+                                                                ("regex", "Regex"),
+                                                                ("sql", "SQL"),
+                                                                ("yaml", "YAML"),
+                                                            ],
+                                                            help_text="Coding language",
+                                                            identifier="language",
+                                                            label="Language",
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "code",
+                                                        wagtail.core.blocks.TextBlock(
+                                                            identifier="code",
+                                                            label="Code",
+                                                        ),
+                                                    ),
+                                                ],
+                                                label="Code",
+                                            ),
+                                        ),
+                                        (
+                                            "caption",
+                                            wagtail.core.blocks.TextBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            ("HTML", wagtail.core.blocks.RawHTMLBlock()),
+                            (
+                                "latex",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "equation",
+                                            wagtail.core.blocks.TextBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "size",
+                                            wagtail.core.blocks.ChoiceBlock(
+                                                choices=[
+                                                    (100, "100%"),
+                                                    (150, "150%"),
+                                                    (200, "200%"),
+                                                    (250, "250%"),
+                                                ]
+                                            ),
+                                        ),
+                                        (
+                                            "caption",
+                                            wagtail.core.blocks.TextBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            ("blockquote", wagtail.core.blocks.BlockQuoteBlock()),
+                            ("embed", wagtail.embeds.blocks.EmbedBlock()),
+                        ],
+                        blank=True,
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="blog.BlogAuthor",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailimages.Image",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('core.bannerpage',),
+            bases=("core.bannerpage",),
         ),
     ]

@@ -6,18 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0007_auto_20191024_2330'),
+        ("settings", "0007_auto_20191024_2330"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='googleanalytics',
-            name='name',
+            model_name="googleanalytics",
+            name="name",
             field=models.CharField(blank=True, max_length=128),
         ),
         migrations.AlterField(
-            model_name='googleanalytics',
-            name='tracking_id',
-            field=models.CharField(blank=True, max_length=14, verbose_name='Tracking ID'),
+            model_name="googleanalytics",
+            name="tracking_id",
+            field=models.CharField(
+                blank=True, max_length=14, verbose_name="Tracking ID"
+            ),
         ),
     ]
