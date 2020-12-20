@@ -1,6 +1,6 @@
 -r base.txt
 sentry-sdk
-psycopg2>=2.8.4
+psycopg2==2.8.6
 django-toolbelt>=0.0.1
-boto3>=1.10.14
-django-storages>=1.7.2
+boto3==1.16.40
+django-storages==1.11
