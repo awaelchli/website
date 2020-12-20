@@ -26,7 +26,6 @@ DATABASES = {}
 
 INSTALLED_APPS = [
     'blog',
-    'contact',
     'core',
     'flex',
     'home',
@@ -64,8 +63,6 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 
     'wagtailfontawesome',
-    'captcha',
-    'wagtailcaptcha',
     'wagtailcodeblock',
     'pydjax',
     'wagtailautocomplete',
