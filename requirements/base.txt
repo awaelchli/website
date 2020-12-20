@@ -1,12 +1,12 @@
 Django>=2.2,<2.3
-wagtail>=2.7,<2.8
+wagtail>=2.8,<2.9
 django-extensions==2.2.5
 wagtailfontawesome==1.1.4
 wagtail-django-recaptcha==1.0
 wagtailcodeblock<=1.15.0.0
 pydjax==0.2
 whitenoise==4.1.4
-wagtail-autocomplete==0.4
+wagtail-autocomplete==0.6
 django-crispy-forms==1.8.0
 python-telegram-bot==12.2.0
 Wand==0.5.8
