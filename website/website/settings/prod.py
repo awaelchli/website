@@ -55,5 +55,6 @@ SECURE_SSL_REDIRECT = True
 # Sentry
 sentry_sdk.init(
     dsn=SECRETS['SENTRY_URL'],
-    integrations=[DjangoIntegration()]
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
 )
