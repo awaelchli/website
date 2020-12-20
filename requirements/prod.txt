@@ -1,6 +1,6 @@
 -r base.txt
 sentry-sdk==0.13.0
-psycopg2==2.8.4
-django-toolbelt==0.0.1
-boto3==1.10.14
-django-storages==1.7.2
+psycopg2>=2.8.4
+django-toolbelt>=0.0.1
+boto3>=1.10.14
+django-storages>=1.7.2
