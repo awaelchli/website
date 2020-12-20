@@ -1,8 +1,7 @@
-Django>=3.0,<3.1
+Django>=3.1,<3.2
 wagtail>=2.11,<2.12
 django-extensions==3.1.0
 wagtailfontawesome==1.2.1
-# wagtail-django-recaptcha==1.0
 wagtailcodeblock==1.17.1.0
 pydjax==0.2
 whitenoise==5.2.0
