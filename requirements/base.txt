@@ -1,4 +1,4 @@
-Django>=2.2,<2.3
+Django>=3.0,<3.1
 wagtail>=2.11,<2.12
 django-extensions==3.1.0
 wagtailfontawesome==1.2.1
