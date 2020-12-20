@@ -1,7 +1,7 @@
 from django.db import models
 from django.shortcuts import render
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
-from wagtail.contrib.forms.models import AbstractFormField, AbstractEmailForm
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page

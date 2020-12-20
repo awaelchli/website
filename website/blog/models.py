@@ -1,8 +1,14 @@
 from abc import abstractmethod
 
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, TabbedInterface, ObjectList
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    MultiFieldPanel,
+    ObjectList,
+    StreamFieldPanel,
+    TabbedInterface
+)
 from wagtail.core.blocks import RawHTMLBlock, StreamBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, Site

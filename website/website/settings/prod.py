@@ -1,9 +1,10 @@
 from __future__ import absolute_import, unicode_literals
-from .base import *
+
 import dj_database_url
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
+from .base import *
 
 INSTALLED_APPS += [
     'storages',

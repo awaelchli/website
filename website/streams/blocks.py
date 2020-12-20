@@ -1,7 +1,7 @@
+import wagtailcodeblock.blocks
 from wagtail.core import blocks
 from wagtail.core.blocks import StreamBlock
 from wagtail.images.blocks import ImageChooserBlock
-import wagtailcodeblock.blocks
 
 
 class TitleAndTextBlock(blocks.StructBlock):

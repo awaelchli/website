@@ -1,6 +1,10 @@
 from django.core.validators import RegexValidator
 from django.db import models
-from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, PageChooserPanel
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    MultiFieldPanel,
+    PageChooserPanel
+)
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.registry import register_setting
 

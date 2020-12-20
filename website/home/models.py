@@ -3,10 +3,15 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel, PageChooserPanel
-from wagtail.core.fields import StreamField, RichTextField
-
-from wagtail.core.models import Page, Orderable
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    InlinePanel,
+    MultiFieldPanel,
+    PageChooserPanel,
+    StreamFieldPanel
+)
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.models import Orderable, Page
 
 from blog.models import BlogListingPage
 from core.models import BannerPage

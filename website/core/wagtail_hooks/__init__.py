@@ -1,2 +1,2 @@
-from .draftail import *
 from .admin import *
+from .draftail import *
