@@ -9,7 +9,6 @@ from wagtail.core.fields import StreamField, RichTextField
 from wagtail.core.models import Page, Orderable
 
 from blog.models import BlogListingPage
-from contact.models import ContactPage
 from core.models import BannerPage
 from flex.models import FlexPage
 from streams import blocks
@@ -22,7 +21,6 @@ class HomePage(BannerPage):
         'blog.CreativeHub',
         'blog.HackerCave',
         'blog.ResearchBlog',
-        'contact.ContactPage',
         'flex.FlexPage',
         'subscription.SubscriptionPage'
     ]
